@@ -1,11 +1,16 @@
 <template>
   <div>
-    <MainHead></MainHead>
-    <MainBody></MainBody>
+    <el-container>
+      <el-header><Head></Head></el-header>
+      <MainBody></MainBody>
+      <MainFoot></MainFoot>
+        
+  </el-container>
   </div>
 </template>
 <script>
-import MainHead from './components/MainHead.vue';
+import Head from './layout/Head.vue';
+import MainFoot from './components/MainFoot.vue';
 import MainBody from './components/MainBody.vue';
 export default {
   data() {
@@ -14,7 +19,7 @@ export default {
     }
   },
   components: {
-    MainHead,MainBody
+    MainFoot,MainBody
   }
 }
 </script>

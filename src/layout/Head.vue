@@ -6,10 +6,10 @@
         <el-link class='link' type="primary" href="/Main">排行</el-link>   
       </div>
       <div clas="HeadTitleRt">
-        <v-if>
-          <el-link class='link' type="primary" href="/Main">登录</el-link>     
-          <el-link class='link' type="primary" href="/Main">注册</el-link>
-        </v-if>
+          <v-if>
+            <el-link class='link' type="primary" href="/Main">登录</el-link>     
+            <el-link class='link' type="primary" href="/Main">注册</el-link>
+          </v-if>
       </div>
     </div>
 </template>
@@ -23,11 +23,19 @@ export default {
 }
 </script>
 <style scoped>
+.HeadTitle{
+  display:flex;
+  width:100%;
+  justify-content: space-between;
+}
 .HeadTitleLf{
-  display: flex;
   flex-direction: row;
 }
+.HeadTitleRt{
+  text-align:right
+}
 .link{
-  margin-right: 10px;
+  margin-right: 15px;
+  font-size: 20px;
   }
 </style>

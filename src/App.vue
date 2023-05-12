@@ -1,9 +1,11 @@
 <template>
   <div>
+    <Head></Head>
     <router-view></router-view>
   </div>
 </template>
 <script>
+import Head from './layout/Head.vue';
 import MainHead from './components/MainFoot.vue';
 import MainBody from './components/MainBody.vue';
 export default {
@@ -14,7 +16,7 @@ export default {
   }
   },
   components: {
-    MainHead,MainBody
+    MainHead,MainBody,Head
   }
 }
 </script>
