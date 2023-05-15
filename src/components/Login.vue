@@ -1,17 +1,33 @@
 <script setup>
-  import Head from '../layout/Head.vue';
+import Head from '../layout/Head.vue';
+import LoginBox from './LoginBox.vue';
+import Footer from '../layout/Footer.vue'
 </script>
 <template>
-  <div>
-      <Head></Head>
+  <div class="bgc">
+    <el-container>
+      <el-header height="40px">
+
+        <Head></Head>
+      </el-header>
       <div class="hx"></div>
-      <h1>Login</h1>
+      <el-main>
+        <LoginBox></LoginBox>
+      </el-main>
+      <el-footer>
+        <Footer></Footer>
+      </el-footer>
+    </el-container>
   </div>
 </template>
 <style scoped>
-.hx{
-  margin-top: 3px;
+.hx {
   margin-bottom: 3px;
-  border: 1px solid black;
+  border: 1px solid grey;
+  margin-left: 18px;
+  margin-right: 18px;
 }
-</style>
+
+.bgc {
+  /* background-color: lightgrey; */
+}</style>
