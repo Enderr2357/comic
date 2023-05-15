@@ -25,7 +25,7 @@
 </script>
 <style scoped>
 .demo-radius .radius {
-  <<<<<<< HEAD height: 40px;
+  height: 40px;
   width: 30%;
   border: 1px solid var(--el-border-color);
   border-radius: 0;
@@ -33,7 +33,7 @@
 }
 
 .radius {
-  =======height: 30px;
+  height: 30px;
   width: 30%;
   border: 1px solid var(--el-border-color);
   border-radius: 0;
@@ -41,17 +41,14 @@
 }
 
 .radius {
-  >>>>>>>3402234e988a76cbc467b221696b3983fd03238a line-height: 30px;
+  line-height: 30px;
   text-align: center;
   font-size: small;
 }
 
-<<<<<<< HEAD .loginbox {
+.loginbox {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-
-  =======.loginbox {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-    >>>>>>>3402234e988a76cbc467b221696b3983fd03238a background-color: lightgrey;
-    text-align: center;
-  }
+  background-color: lightgrey;
+  text-align: center;
+}
 </style>
