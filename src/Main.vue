@@ -2,12 +2,13 @@
   <div class="bgc">
     <el-container>
       <el-header>
-          <Head></Head>
+
+        <Head></Head>
       </el-header>
       <MainBody></MainBody>
       <MainFoot></MainFoot>
-        
-  </el-container>
+
+    </el-container>
   </div>
 </template>
 <script setup>
@@ -16,7 +17,7 @@ import MainFoot from './components/MainFoot.vue';
 import MainBody from './components/MainBody.vue';
 </script>
 <style scoped>
-.bgc{
+.bgc {
   height: 100%;
   background-color: grey;
 }

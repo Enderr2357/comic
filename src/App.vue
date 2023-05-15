@@ -7,6 +7,4 @@
 import Head from './layout/Head.vue';
 
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>
