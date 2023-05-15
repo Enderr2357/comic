@@ -30,4 +30,5 @@ import Footer from '../layout/Footer.vue'
 
 .bgc {
   /* background-color: lightgrey; */
-}</style>
+}
+</style>
