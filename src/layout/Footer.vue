@@ -1,13 +1,17 @@
 <script setup>
-     
+
 </script>
 <template>
-  <div class="bgc">
+  <el-container>
+    <el-footer class="footer">
       <span class="foottitle">关于我们 | 联系我们 | 返回首页</span>
-  </div>
+    </el-footer>
+  </el-container>
 </template>
 <style scoped>
-.bgc{
-  margin-left: 220px;
+.footer {
+  background-color: #b1b3b8;
+  height: 130px;
+  text-align: center;
 }
 </style>

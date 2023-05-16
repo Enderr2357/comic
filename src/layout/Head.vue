@@ -11,15 +11,19 @@
         <el-link class='link' type="warning" href="/Register">注册</el-link>
       </v-if>
     </div>
+
   </div>
+  <div class="hx"></div>
 </template>
 <script setup>
 </script>
 <style scoped>
 .HeadTitle {
-  margin-top: 10px;
+  margin-top: 1%;
   display: flex;
   justify-content: space-between;
+  margin-left: 22%;
+  margin-right: 25%;
   /* background-color: lightgrey; */
   /* box-shadow: '--el-box-shadow-dark' */
 }
@@ -35,4 +39,10 @@
 .link {
   margin-right: 15px;
   font-size: 20px;
+}
+
+.hx {
+  border: 1px solid grey;
+  margin-left: 22%;
+  margin-right: 26%;
 }</style>
