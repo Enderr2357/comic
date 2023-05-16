@@ -10,7 +10,7 @@ import Footer from '../layout/Footer.vue'
       <el-container>
         <el-aside width="40%" class="side">
           <div class="as-img">
-            <img src="../img/登陆注册图片.png">
+            <img src="../img/登录注册图片.png">
           </div>
         </el-aside>
 
@@ -55,8 +55,6 @@ import Footer from '../layout/Footer.vue'
 .t {
   padding-top: 40px;
 }
-
-
 
 .mid {
   margin-bottom: 100px;

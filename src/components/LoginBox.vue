@@ -1,38 +1,28 @@
 <template>
-    <div class="loginbox">
-      <div class="none"></div>
-      <div>用户名</div>
-      <el-row :gutter="12" class="demo-radius" >
-        
-         <el-input v-model="username" class="radius"
-          :style="{ 
-            borderRadius: 'round'
-              ? `var(--el-border-radius-round)`
-              : '',
-          }"
-          type="text"
-          placeholder="请输入你的用户名" 
-          /></el-row>
-          <div class="none"></div>
-          <div>密码</div>
-          <el-row :gutter="12" class="demo-radius">
-          <el-input 
-          type="password"
-          v-model="password" class="radius"
-          :style="{
-            borderRadius: 'round'
-              ? `var(--el-border-radius-round)`
-              : '',
-          }"
-          placeholder="请输入你的密码"
-          showpassword
-          />
-          
-      </el-row>
-      <div class="none"></div>
-      <div class="none"></div>
-      <el-button type="success" plain class="loginbtn" @click="login">登录</el-button>
-    </div>
+  <div class="loginbox">
+    <div class="none"></div>
+    <div>用户名</div>
+    <el-row :gutter="12" class="demo-radius">
+
+      <el-input v-model="username" class="radius" :style="{
+        borderRadius: 'round'
+          ? `var(--el-border-radius-round)`
+          : '',
+      }" type="text" placeholder="请输入你的用户名" /></el-row>
+    <div class="none"></div>
+    <div>密码</div>
+    <el-row :gutter="12" class="demo-radius">
+      <el-input type="password" v-model="password" class="radius" :style="{
+        borderRadius: 'round'
+          ? `var(--el-border-radius-round)`
+          : '',
+      }" placeholder="请输入你的密码" showpassword />
+
+    </el-row>
+    <div class="none"></div>
+    <div class="none"></div>
+    <el-button type="success" plain class="loginbtn" @click="login">登录</el-button>
+  </div>
 </template>
 
 <script setup>
@@ -51,8 +41,8 @@ const login = () => {
     },
     data: {}
   }).then((res => {
-      console.log(res)
-    }))
+    console.log(res)
+  }))
 }
 </script>
 <style scoped>
@@ -60,26 +50,30 @@ const login = () => {
   height: 30px;
   width: 30%;
   border: 1px solid var(--el-border-color);
- border-radius: 0;
-  margin-left: 35%; 
+  border-radius: 0;
+  margin-left: 35%;
 }
-.radius{
+
+.radius {
   line-height: 30px;
   text-align: center;
   font-size: small;
 }
-.loginbox{
-  box-shadow: 0 2px 4px rgba(0,0,0,0.12),0 0 6px rgba(0,0,0,0.04);
+
+.loginbox {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
   background-color: rgb(250, 255, 255);
   text-align: center;
   font-family: 'Times New Roman', Times, serif;
   width: 40%;
   margin-left: 28%;
 }
-.none{
+
+.none {
   height: 10px;
 }
-.loginbtn{
+
+.loginbtn {
   margin-bottom: 10px;
 }
 </style>

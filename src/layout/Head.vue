@@ -6,7 +6,6 @@
       <el-link class='link' type="warning" href="/Main">排行</el-link>
     </div>
     <div>
-
       <el-row :gutter="12" class="demo-radius">
         <input v-model="search" class="radius" :style="{
           borderRadius: 'round'
@@ -14,8 +13,8 @@
             : '',
         }" type="text" placeholder="搜索漫画">
       </el-row>
-    <div clas="HeadTitleRt">
     </div>
+    <div clas="HeadTitleRt">
       <v-if>
         <el-link class='link' type="warning" href="/Login">登录</el-link>
         <el-link class='link' type="warning" href="/Register">注册</el-link>
@@ -63,5 +62,12 @@
 .link {
   margin-right: 15px;
   font-size: 20px;
-  }
+}
+
+.hx {
+  margin-bottom: 100px;
+  border: 1px solid grey;
+  margin-left: 18px;
+  margin-right: 18px;
+}
 </style>
