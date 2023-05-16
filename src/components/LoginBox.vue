@@ -38,20 +38,28 @@
 <script setup>
 import axios from 'axios'
 import { ref } from 'vue';
-let username = ref('');
-let password = ref('');
 
+let username = ref('');
+let password = ref('')
 const login = () => {
   axios({
     method: 'GET',
-    url: 'http://yapi.smart-xwork.cn/mock/246265/Login',
+    url: 'http://localhost:3000/comments',
     params: {
       username: username.value,
       password: password.value
     },
-    data: {}
+    data: {
+      
+    }
   }).then((res => {
-      console.log(res)
+    console.log(res.data)
+    console.log(res.data[0].username)
+    console.log(res.data[0].password)
+    console.log(username)
+    if (res.data[0].username == username.value && res.data[0].password == password.value) { 
+      console.log('登陆成功')
+    }
     }))
 }
 </script>
