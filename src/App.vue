@@ -1,14 +1,9 @@
 <template>
   <div>
     <el-container>
-      <el-header>
-
-        <Head height="70px"></Head>
-      </el-header>
+      <el-header><Head height="70px"></Head> </el-header>
       <el-main><router-view></router-view></el-main>
-      <el-footer>
-        <Footer></Footer>
-      </el-footer>
+      <el-footer><Footer></Footer></el-footer>  
     </el-container>
   </div>
 </template>

@@ -13,8 +13,8 @@
             : '',
         }" type="text" placeholder="搜索漫画">
       </el-row>
-    </div>
     <div clas="HeadTitleRt">
+    </div>
       <v-if>
         <el-link class='link' type="warning" href="/Login">登录</el-link>
         <el-link class='link' type="warning" href="/Register">注册</el-link>
@@ -63,11 +63,11 @@
   margin-right: 15px;
   font-size: 20px;
 }
-
 .hx {
+
   margin-bottom: 100px;
-  border: 1px solid grey;
   margin-left: 18px;
+  border: 1px solid grey;
   margin-right: 18px;
 }
 </style>
