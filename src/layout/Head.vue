@@ -5,6 +5,16 @@
       <el-link class='link' type="warning" href="/Main">更新</el-link>
       <el-link class='link' type="warning" href="/Main">排行</el-link>
     </div>
+    <div>
+      <el-row :gutter="12" class="demo-radius">
+
+        <input v-model="search" class="radius" :style="{
+          borderRadius: 'round'
+            ? `var(--el-border-radius-round)`
+            : '',
+        }" type="text" placeholder="搜索漫画">
+      </el-row>
+    </div>
     <div clas="HeadTitleRt">
       <v-if>
         <el-link class='link' type="warning" href="/Login">登录</el-link>
@@ -20,12 +30,26 @@
 <style scoped>
 .HeadTitle {
   margin-top: 1%;
+  margin-bottom: 1%;
   display: flex;
   justify-content: space-between;
-  margin-left: 22%;
-  margin-right: 25%;
+  margin-left: 5%;
+  margin-right: 5%;
   /* background-color: lightgrey; */
   /* box-shadow: '--el-box-shadow-dark' */
+}
+
+.demo-radius .radius {
+  height: 40px;
+  border: 2px solid var(--el-border-color);
+  border-radius: 0;
+  margin: auto;
+}
+
+.radius {
+  line-height: 30px;
+  text-align: center;
+  font-size: small;
 }
 
 .HeadTitleLf {
@@ -42,7 +66,9 @@
 }
 
 .hx {
+  margin-bottom: 100px;
   border: 1px solid grey;
-  margin-left: 22%;
-  margin-right: 26%;
-}</style>
+  margin-left: 18px;
+  margin-right: 18px;
+}
+</style>

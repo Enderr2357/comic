@@ -6,7 +6,6 @@ import Footer from '../layout/Footer.vue'
   <el-container>
     <el-header height="70px">
     </el-header>
-    <div class="hxt"></div>
     <div class="mid">
       <el-container>
         <el-aside width="40%" class="side">
@@ -61,13 +60,6 @@ import Footer from '../layout/Footer.vue'
 
 .mid {
   margin-bottom: 100px;
-}
-
-.hxt {
-  margin-bottom: 100px;
-  border: 1px solid grey;
-  margin-left: 18px;
-  margin-right: 18px;
 }
 
 .bgc {

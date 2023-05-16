@@ -3,7 +3,7 @@
     <el-container>
       <el-header>
 
-        <Head height="40px"></Head>
+        <Head height="70px"></Head>
       </el-header>
       <el-main><router-view></router-view></el-main>
       <el-footer>
