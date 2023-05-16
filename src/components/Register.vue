@@ -3,7 +3,6 @@
 </script>
 <template>
   <div>
-      <Head></Head>
       <h1>Register</h1>
   </div>
 </template>

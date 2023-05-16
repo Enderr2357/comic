@@ -1,10 +1,10 @@
 <template>
-  <div class="background">
     <div class="loginbox">
+      <div class="none"></div>
       <div>用户名</div>
       <el-row :gutter="12" class="demo-radius" >
         
-         <input v-model="username" class="radius"
+         <el-input v-model="username" class="radius"
           :style="{ 
             borderRadius: 'round'
               ? `var(--el-border-radius-round)`
@@ -12,24 +12,48 @@
           }"
           type="text"
           placeholder="请输入你的用户名" 
-          ></el-row>
+          /></el-row>
+          <div class="none"></div>
           <div>密码</div>
           <el-row :gutter="12" class="demo-radius">
-          <input v-model="username" class="radius"
+          <el-input 
+          type="password"
+          v-model="password" class="radius"
           :style="{
             borderRadius: 'round'
               ? `var(--el-border-radius-round)`
               : '',
           }"
-          type="text" 
           placeholder="请输入你的密码"
-          >
+          showpassword
+          />
+          
       </el-row>
-  </div>
-</div>
+      <div class="none"></div>
+      <div class="none"></div>
+      <el-button type="success" plain class="loginbtn" @click="login">登录</el-button>
+    </div>
 </template>
 
 <script setup>
+import axios from 'axios'
+import { ref } from 'vue';
+let username = ref('');
+let password = ref('');
+
+const login = () => {
+  axios({
+    method: 'GET',
+    url: 'http://yapi.smart-xwork.cn/mock/246265/Login',
+    params: {
+      username: username.value,
+      password: password.value
+    },
+    data: {}
+  }).then((res => {
+      console.log(res)
+    }))
+}
 </script>
 <style scoped>
 .demo-radius .radius {
@@ -46,7 +70,16 @@
 }
 .loginbox{
   box-shadow: 0 2px 4px rgba(0,0,0,0.12),0 0 6px rgba(0,0,0,0.04);
-  background-color: lightgrey;
+  background-color: rgb(250, 255, 255);
   text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  width: 40%;
+  margin-left: 28%;
+}
+.none{
+  height: 10px;
+}
+.loginbtn{
+  margin-bottom: 10px;
 }
 </style>

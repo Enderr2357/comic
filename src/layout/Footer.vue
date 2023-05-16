@@ -8,6 +8,6 @@
 </template>
 <style scoped>
 .bgc{
-  margin-left: 220px;
+  margin-left: 37%;
 }
 </style>
