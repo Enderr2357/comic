@@ -14,8 +14,9 @@
             : '',
         }" type="text" placeholder="搜索漫画">
       </el-row>
-    <div clas="HeadTitleRt">
     </div>
+    <div clas="HeadTitleRt">
+    
       <v-if>
         <el-link class='link' type="warning" href="/Login">登录</el-link>
         <el-link class='link' type="warning" href="/Register">注册</el-link>
