@@ -64,6 +64,7 @@
   margin-right: 15px;
   font-size: 20px;
 }
+
 .hx {
 
   margin-bottom: 100px;
