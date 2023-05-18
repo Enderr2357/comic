@@ -1,7 +1,3 @@
-<script setup>
-import Head from '../layout/Head.vue';
-import Footer from '../layout/Footer.vue'
-</script>
 <template>
   <el-container>
         <el-aside width="40%" class="side">
@@ -70,6 +66,28 @@ import Footer from '../layout/Footer.vue'
         </el-main>
   </el-container>
 </template>
+
+<script setup>
+import axios from 'axios'
+import { ref } from 'vue';
+let username = ref('');
+let password = ref('');
+let passwordConfirm = ref('');
+
+const register = () => {
+  axios({
+    url: 'http://localhost:3000/comments',
+    method: 'post',
+    data: {
+      username: username.value,
+      password: password.value,
+      passwordConfirm: passwordConfirm.value
+    }
+  }).then((res => {
+    console.log(res.data)
+  }))
+}
+</script>
 <style scoped>
 
 

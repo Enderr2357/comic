@@ -103,20 +103,23 @@ const login = () => {
  border-radius: 0;
   margin-left: 31%; 
 }
-.radius{
+
+.radius {
   line-height: 30px;
   text-align: center;
   font-size: small;
 }
-.loginbox{
-  box-shadow: 0 2px 4px rgba(0,0,0,0.12),0 0 6px rgba(0,0,0,0.04);
+
+.loginbox {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
   background-color: rgb(250, 255, 255);
   font-family: 'Times New Roman', Times, serif;
   height: 100%;
   margin-left: 0%;
   width: 60%;
 }
-.none{
+
+.none {
   height: 10px;
 }
 .side{
