@@ -1,7 +1,3 @@
-<script setup>
-import Head from '../layout/Head.vue';
-import Footer from '../layout/Footer.vue'
-</script>
 <template>
   <el-container>
     <el-header height="70px">
@@ -43,7 +39,7 @@ import Footer from '../layout/Footer.vue'
                     : '',
                 }" type="text" placeholder="再次输入密码">
               </el-row>
-              <el-button type="warning" round class="RButton">注册</el-button>
+              <el-button type="warning" round class="RButton" @click="register">注册</el-button>
             </div>
           </div>
         </el-main>
@@ -51,6 +47,28 @@ import Footer from '../layout/Footer.vue'
     </div>
   </el-container>
 </template>
+
+<script setup>
+import axios from 'axios'
+import { ref } from 'vue';
+let username = ref('');
+let password = ref('');
+let passwordConfirm = ref('');
+
+const register = () => {
+  axios({
+    url: 'http://localhost:3000/comments',
+    method: 'post',
+    data: {
+      username: username.value,
+      password: password.value,
+      passwordConfirm: passwordConfirm.value
+    }
+  }).then((res => {
+    console.log(res.data)
+  }))
+}
+</script>
 <style scoped>
 .t {
   padding-top: 40px;
