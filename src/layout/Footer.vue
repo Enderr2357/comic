@@ -2,16 +2,26 @@
 
 </script>
 <template>
-  <el-container>
-    <el-footer class="footer">
+  <div class="footer">
       <span class="foottitle">关于我们 | 联系我们 | 返回首页</span>
-    </el-footer>
-  </el-container>
+  </div>
 </template>
-<style scoped>
+<style>
 .footer {
-  background-color: #b1b3b8;
-  height: 130px;
+  background-color: black;
+  height: 100%;
   text-align: center;
+}
+.foottitle{
+  padding-top: 5%;
+  color: orange;
+}
+.el-footer {
+    --el-footer-height: 60px;
+    padding: 0 !important ; 
+    box-sizing: border-box;
+    flex-shrink: 0;
+    height: var(--el-footer-height);
+    
 }
 </style>

@@ -5,4 +5,15 @@ import router from './router'
 import App from './App.vue'
 import './index.css'
 import axios from 'axios';
-createApp(App).use(ElementPlus).use(router).mount('#app')
+import locale from 'element-plus/lib/locale/lang/zh-cn'
+import * as ElementPlusIconsVue from "@element-plus/icons-vue";
+
+const app = createApp(App)
+app.use(router)
+app.use(ElementPlus, { locale })
+
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
+
+app.mount('#app')

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>1111</h1>
+    <h1>这里是Main</h1>
   </div>
 </template>
 <script setup>

@@ -1,9 +1,21 @@
 <template>
+  <el-container>
+    <el-aside width="40%" class="side">
+            <div class="as-img">
+              <img src="../img/登陆注册图片.png">
+            </div>
+          </el-aside>
+          <el-main>
     <div class="loginbox">
+      <el-header height="1px"></el-header>
+      
       <div class="none"></div>
-      <div>用户名</div>
-      <el-row :gutter="12" class="demo-radius" >
-        
+       <div class="none"></div>
+        <div class="none"></div>
+         <div class="none"></div>
+      <div class="LgText">账号</div>
+      <div class="demo-radius" >
+          
          <el-input v-model="username" class="radius"
           :style="{ 
             borderRadius: 'round'
@@ -11,11 +23,17 @@
               : '',
           }"
           type="text"
-          placeholder="请输入你的用户名" 
-          /></el-row>
-          <div class="none"></div>
-          <div>密码</div>
-          <el-row :gutter="12" class="demo-radius">
+          placeholder="Account" 
+          >
+          <template #prefix>
+               <el-icon color="green">
+                 <User/>
+                </el-icon></template>
+                  </el-input>
+        </div>
+        <div class="none"></div>
+          <div class="LgText">密码</div>
+          <div class="demo-radius">
           <el-input 
           type="password"
           v-model="password" class="radius"
@@ -24,15 +42,22 @@
               ? `var(--el-border-radius-round)`
               : '',
           }"
-          placeholder="请输入你的密码"
+          placeholder="Password"
           showpassword
-          />
-          
-      </el-row>
+          >
+          <template #prefix>
+                 <el-icon color="green">
+                   <Lock />
+                  </el-icon>
+                  </template>
+                  </el-input>
+      </div>
       <div class="none"></div>
       <div class="none"></div>
       <el-button type="success" plain class="loginbtn" @click="login">登录</el-button>
     </div>
+    </el-main>
+    </el-container>
 </template>
 
 <script setup>
@@ -64,12 +89,19 @@ const login = () => {
 }
 </script>
 <style scoped>
-.demo-radius .radius {
+.demo-radius{
   height: 30px;
-  width: 30%;
+}
+.LgText{
+  margin-left: 31%;
+  font-size: 6px;
+}
+.demo-radius .radius {
+  height: 100%;
+  width: 45%;
   border: 1px solid var(--el-border-color);
  border-radius: 0;
-  margin-left: 35%; 
+  margin-left: 31%; 
 }
 .radius{
   line-height: 30px;
@@ -79,15 +111,19 @@ const login = () => {
 .loginbox{
   box-shadow: 0 2px 4px rgba(0,0,0,0.12),0 0 6px rgba(0,0,0,0.04);
   background-color: rgb(250, 255, 255);
-  text-align: center;
   font-family: 'Times New Roman', Times, serif;
-  width: 40%;
-  margin-left: 28%;
+  height: 100%;
+  margin-left: 0%;
+  width: 60%;
 }
 .none{
   height: 10px;
 }
+.side{
+margin-left: 13%;
+}
 .loginbtn{
-  margin-bottom: 10px;
+  width: 50%;
+  margin-left: 28%;
 }
 </style>

@@ -4,78 +4,89 @@ import Footer from '../layout/Footer.vue'
 </script>
 <template>
   <el-container>
-    <el-header height="70px">
-    </el-header>
-    <div class="mid">
-      <el-container>
         <el-aside width="40%" class="side">
           <div class="as-img">
             <img src="../img/登陆注册图片.png">
-          </div>
+            </div>
         </el-aside>
 
         <!-- 注册框 -->
         <el-main>
-          <div class="background">
+          <el-header height="1px"></el-header>
             <div class="registerBox">
-              <div class="t">用户名</div>
-              <el-row :gutter="12" class="demo-radius">
+              <div class="none"></div>
+           <div class="none"></div>
+           <div class="none"></div>
+              <div class="RegText">账号</div>
+              <div  class="demo-radius">
 
-                <input v-model="username" class="radius" :style="{
+                <el-input v-model="username" class="radius" :style="{
                   borderRadius: 'round'
                     ? `var(--el-border-radius-round)`
                     : '',
-                }" type="text" placeholder="请输入用户名">
-              </el-row>
-              <div>密码</div>
-              <el-row :gutter="12" class="demo-radius">
-                <input v-model="password" class="radius" :style="{
+                }" type="text" placeholder="Account">
+                <template #prefix>
+                <el-icon color="orange">
+                  <User/>
+                </el-icon></template>
+                </el-input>
+              </div>
+              <div class="none"></div>
+              <div class="RegText">密码</div>
+              <div  class="demo-radius">
+                <el-input v-model="password" class="radius" :style="{
                   borderRadius: 'round'
                     ? `var(--el-border-radius-round)`
                     : '',
-                }" type="text" placeholder="请输入密码">
-              </el-row>
-              <div>确认密码</div>
-              <el-row :gutter="12" class="demo-radius">
-                <input v-model="passwordConfirm" class="radius" :style="{
+                }" type="text" placeholder="Password">
+              <template #prefix>
+               <el-icon color="orange">
+                 <Lock />
+                </el-icon>
+                </template>
+                </el-input>
+                </div>
+              
+                <div class="none"></div>
+              <div class="RegText">确认密码</div>
+              <div  class="demo-radius">
+                <el-input v-model="passwordConfirm" class="radius" :style="{
                   borderRadius: 'round'
                     ? `var(--el-border-radius-round)`
                     : '',
-                }" type="text" placeholder="再次输入密码">
-              </el-row>
-              <el-button type="warning" round class="RButton">注册</el-button>
+                }" type="text" placeholder="ConfirmPassword">
+                <template #prefix>
+                 <el-icon color="orange">
+                   <Lock />
+                  </el-icon>
+                  </template>
+                  </el-input>
+                </div>
+                <div class="none"></div>
+                <div class="none"></div>
+
+              <el-button type="warning" plain class="RButton">注册</el-button>
             </div>
-          </div>
         </el-main>
-      </el-container>
-    </div>
   </el-container>
 </template>
 <style scoped>
-.t {
-  padding-top: 40px;
+
+
+.demo-radius{
+  height: 30px;
 }
-
-
-
-.mid {
-  margin-bottom: 100px;
-}
-
-.bgc {
-  /* background-color: lightgrey; */
-}
-
-.demo-radius .radius {
-  height: 40px;
-  width: 50%;
+.demo-radius .radius{
+  height: 100%;
+  width: 45%;
   border: 1px solid var(--el-border-color);
   border-radius: 0;
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin-left: 28%; 
 }
-
+.RegText{
+  margin-left: 28%;
+  font-size: 6px;
+}
 .radius {
   line-height: 30px;
   text-align: center;
@@ -85,28 +96,22 @@ import Footer from '../layout/Footer.vue'
 .registerBox {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
   background-color: #f4f4f5;
-  text-align: center;
-  height: 400px;
+  font-family: 'Times New Roman', Times, serif;
+  height: auto;
   margin-left: 0%;
+  width: 60%;
 }
 
 .RButton {
   width: 50%;
-  margin-top: 15px;
-}
-
-.background {
-  width: 60%;
+  margin-left: 26%;
+  margin-bottom: 10%;
 }
 
 .side {
-  margin-left: 10%;
+  margin-left: 13%;
 }
-
-.as-img {
-  height: 400px;
-  width: 500px;
-  margin: auto;
-  padding-top: 40px;
+.none{
+  height: 10px;
 }
 </style>

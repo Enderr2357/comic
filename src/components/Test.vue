@@ -1,7 +1,13 @@
+<script setup>
+     
+</script>
 <template>
-  <el-page-header :icon="null" href="/Login">
-    <template #content>
-      <span class="text-large font-600 mr-3"> Title </span>
-    </template>
-  </el-page-header>
+  <div>
+    <div>
+        <el-icon><UserFilled /></el-icon>
+        </div>
+  </div>
 </template>
+<style scoped>
+
+</style>
