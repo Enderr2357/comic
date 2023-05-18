@@ -1,0 +1,35 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "username": "qwe1",
+      "password": "qwe2",
+      "id": 2
+    },
+    {
+      "username": "1231",
+      "password": "123",
+      "id": 3
+    }
+  ],
+  "profile": {
+    "data1": {
+      "__v_isShallow": false,
+      "__v_isRef": true,
+      "_rawValue": [
+        "",
+        ""
+      ],
+      "_value": [
+        "",
+        ""
+      ]
+    }
+  }
+}
