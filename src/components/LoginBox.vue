@@ -2,17 +2,14 @@
   <el-container>
     <el-aside width="40%" class="side">
             <div class="as-img">
-              <img src="../img/登陆注册图片.png">
+              <img src="../img/登录注册图片.png">
             </div>
           </el-aside>
           <el-main>
     <div class="loginbox">
-      <el-header height="1px"></el-header>
       
       <div class="none"></div>
-       <div class="none"></div>
-        <div class="none"></div>
-         <div class="none"></div>
+      <div class="LgTitle">登录</div>
       <div class="LgText">账号</div>
       <div class="demo-radius" >
           
@@ -89,12 +86,16 @@ const login = () => {
 }
 </script>
 <style scoped>
-.demo-radius{
-  height: 30px;
-}
 .LgText{
   margin-left: 31%;
   font-size: 6px;
+  margin-top: 3%;
+}
+.LgTitle{
+  margin-top: 10%;
+  text-align: center;
+  font-size: 30px;
+  color: green;
 }
 .demo-radius .radius {
   height: 100%;
@@ -109,14 +110,19 @@ const login = () => {
   text-align: center;
   font-size: small;
 }
-
+.as-img{
+  width: 70%;
+  height: 70%;
+  margin-top: 10%;
+  margin-left: 20%;
+}
 .loginbox {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
   background-color: rgb(250, 255, 255);
   font-family: 'Times New Roman', Times, serif;
   height: 100%;
   margin-left: 0%;
-  width: 60%;
+  width: 48%;
 }
 
 .none {
@@ -127,6 +133,8 @@ margin-left: 13%;
 }
 .loginbtn{
   width: 50%;
-  margin-left: 28%;
+  margin-left: 26%;
+  margin-bottom: 15%;
+  margin-top: 4%;
 }
 </style>

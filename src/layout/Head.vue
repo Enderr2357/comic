@@ -67,12 +67,10 @@
   font-size: 20px;
   }
 .el-header {
-    --el-header-height: 60px;
+    margin-bottom: 3%;
     padding:0 !important;
     box-sizing: border-box;
     flex-shrink: 0;
-    height: var(--el-header-height);
+    height: 80px;
 }
-
-
 </style>
