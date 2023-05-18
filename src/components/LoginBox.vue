@@ -63,21 +63,24 @@ import { ref } from 'vue';
 
 let username = ref('');
 let password = ref('')
+const request = axios.create({
+  baseURL: '/api',
+  timeout:1000
+})
 const login = () => {
-  axios({
-    method: 'GET',
-    url: 'http://localhost:3000/comments',
+  request({
+    method: 'POST',
+    url: '/login.html',
     params: {
       username: username.value,
-      password: password.value
     },
     data: {
       
     }
   }).then((res => {
-    console.log(res.data)
-    console.log(res.data[0].username)
-    console.log(res.data[0].password)
+    // console.log(res.data)
+    // console.log(res.data[0].username)
+    // console.log(res.data[0].password)
     console.log(username)
     if (res.data[0].username == username.value && res.data[0].password == password.value) { 
       console.log('登陆成功')
