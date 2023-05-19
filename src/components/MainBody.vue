@@ -1,10 +1,24 @@
 <template>
-  <div>
-    <h1>这里是Main</h1>
+  <div class="bg">
+    <div class="title">欢迎使用漫画网站</div>
   </div>
 </template>
 <script setup>
 </script>
-<style scoped>
+<style>
+.bg {
+  height: 200px;
+  background-image: url('../img/主页背景图片三.jpg');
+  background-size: 100% 100%;
+}
 
+.title {
+  font-size: xx-large;
+  text-align: center;
+  color: white;
+}
+
+.el-main {
+  padding: 0 !important;
+}
 </style>
