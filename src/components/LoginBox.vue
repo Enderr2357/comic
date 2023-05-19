@@ -2,7 +2,7 @@
   <el-container>
     <el-aside width="40%" class="side">
             <div class="as-img">
-              <img src="../img/登陆注册图片.png">
+              <img :src="imgUrl"/>
             </div>
           </el-aside>
           <el-main>
@@ -65,7 +65,8 @@ import axios from 'axios'
 import { ref } from 'vue';
 
 let username = ref('');
-let password = ref('')
+let password = ref('');
+const imgUrl=new URL('../img/登录注册图片.png',import.meta.url).href
 const login = () => {
   axios({
     method: 'GET',

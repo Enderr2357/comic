@@ -2,7 +2,7 @@
   <el-container>
         <el-aside width="40%" class="side">
           <div class="as-img">
-            <img src="../img/登陆注册图片.png">
+            <img :src="imgUrl">
             </div>
         </el-aside>
 
@@ -73,7 +73,7 @@ import { ref } from 'vue';
 let username = ref('');
 let password = ref('');
 let passwordConfirm = ref('');
-
+const imgUrl = new URL('../img/登录注册图片.png', import.meta.url).href
 const register = () => {
   axios({
     url: 'http://localhost:3000/comments',
