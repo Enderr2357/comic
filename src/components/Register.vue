@@ -71,7 +71,7 @@ import { ref } from 'vue';
 let username = ref('');
 let password = ref('');
 let passwordConfirm = ref('');
-const imgUrl = new URL('../img/登录注册图片.png', import.meta.url).href
+const imgUrl = new URL('../img/注册登录图片.png', import.meta.url).href
 const register = () => {
   axios({
     url: 'http://localhost:3000/comments',
