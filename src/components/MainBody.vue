@@ -1,6 +1,7 @@
 <template>
   <div class="bg">
     <div class="title">欢迎使用漫画网站</div>
+    </div>
   <div>
     <el-link href="./Detail">这里是漫画</el-link>
   </div>
