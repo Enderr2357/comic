@@ -1,5 +1,5 @@
-<script lang="ts" setup>
-  const imgUrl= new URL('../img/comicimg/biaorenfm.jpg', import.meta.url).href
+<script setup>
+  const imgUrl= new URL('../img/comicimg/biaorenfm.jpg',import.meta.url).href
 </script>
 <template>
   <div class="comicInfo">

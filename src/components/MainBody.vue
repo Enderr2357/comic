@@ -18,9 +18,15 @@
     <div>
       <el-link href="./Detail">这里是漫画</el-link>
     </div>
+  <div>
+    <a href="/Detail">
+      <el-image :src="imgUrl"></el-image>
+    </a>
+  </div>
   </div>
 </template>
 <script setup>
+const imgUrl = new URL('../img/comicimg/biaorenfm.jpg', import.meta.url).href
 </script>
 <style>
 ul {
