@@ -8,11 +8,9 @@
 
         <!-- 注册框 -->
         <el-main>
-          <el-header height="1px"></el-header>
             <div class="registerBox">
               <div class="none"></div>
-           <div class="none"></div>
-           <div class="none"></div>
+              <div class="RegTitle">注册</div>
               <div class="RegText">账号</div>
               <div  class="demo-radius">
 
@@ -34,7 +32,7 @@
                   borderRadius: 'round'
                     ? `var(--el-border-radius-round)`
                     : '',
-                }" type="text" placeholder="Password">
+                }" type="password" placeholder="Password">
               <template #prefix>
                <el-icon color="orange">
                  <Lock />
@@ -50,7 +48,7 @@
                   borderRadius: 'round'
                     ? `var(--el-border-radius-round)`
                     : '',
-                }" type="text" placeholder="ConfirmPassword">
+                }" type="password" placeholder="ConfirmPassword">
                 <template #prefix>
                  <el-icon color="orange">
                    <Lock />
@@ -91,9 +89,6 @@ const register = () => {
 <style scoped>
 
 
-.demo-radius{
-  height: 30px;
-}
 .demo-radius .radius{
   height: 100%;
   width: 45%;
@@ -101,29 +96,42 @@ const register = () => {
   border-radius: 0;
   margin-left: 28%; 
 }
+.RegTitle{
+  margin-top: 8%;
+  text-align: center;
+  font-size: 30px;
+  color: orange;
+}
 .RegText{
   margin-left: 28%;
   font-size: 6px;
+  margin-top: 3%;
 }
 .radius {
   line-height: 30px;
   text-align: center;
   font-size: small;
 }
-
+.as-img{
+  width: 70%;
+  height: 70%;
+  margin-top: 10%;
+  margin-left: 20%;
+}
 .registerBox {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
   background-color: #f4f4f5;
   font-family: 'Times New Roman', Times, serif;
-  height: auto;
+  height: 100%;
   margin-left: 0%;
-  width: 60%;
+  width: 50%;
 }
 
 .RButton {
   width: 50%;
   margin-left: 26%;
   margin-bottom: 10%;
+  margin-top: 4%;
 }
 
 .side {

@@ -8,20 +8,20 @@
 </template>
 <style>
 .footer {
-  background-color: black;
+  background-color: #000000;
   height: 100%;
   text-align: center;
 }
 .foottitle{
-  padding-top: 5%;
   color: orange;
 }
 .el-footer {
+
     --el-footer-height: 60px;
     padding: 0 !important ; 
     box-sizing: border-box;
     flex-shrink: 0;
-    height: var(--el-footer-height);
-    
+    height: 250px;
+    margin-top: 8%;
 }
 </style>
