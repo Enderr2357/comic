@@ -59,7 +59,7 @@
 }
 .bgc{
   background-color: black;
-  height: 90%;
+  height: 100%;
 }
 .link {
   margin-right: 15px;

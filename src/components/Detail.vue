@@ -1,19 +1,20 @@
 <script setup>
 import { requestUrlParam1 } from '../router';
 const imgUrl = new URL('../img/comicimg', import.meta.url).href
-const name = requestUrlParam1();
-console.log(name)
+const id = requestUrlParam1();
+console.log(id)
 </script>
 <template>
   <div class="comicBg">
   <div class="comicBlock">
     <div class="comicImg">
       <el-image :src="imgUrl+'/'+name+'.jpg'"
-        style="width: 100%; height: 100%"
+        style="width: auto; height: auto; max-width: 100%;
+              max-height: 100%;"
         :zoom-rate="1.2"
         :preview-src-list="[imgUrl]"
         :initial-index="1"
-        fit="cover" 
+        fit="contain" 
         />
     </div>
     <div class="comicdeCon">
@@ -36,18 +37,16 @@ console.log(name)
    font-size: 30px;
 }
 
-.el-image {
-  width: 100%;
-  height: 100%;
-}
 .comicBlock{
-  height: 40%;
+  height: 408px;
+  width: 100%;
   display: flex;
 }
 .comicdetail{
-  height: 40px;
-  width:100px;
+  height: 100px;
+  width:340px;
   color: #b4b3b3;
+  font-size: 13px;
 }
 .dashed{
   margin-top: 5%;
@@ -61,8 +60,9 @@ console.log(name)
   margin-bottom: 3%;
 }
 .comicImg{
-  margin-left: 15%;
-  width: 13%;
+  margin-left: 20%;
+  height: 266px;
+  width: 199px;
   box-shadow:-1px 7px 22px #b4b3b3;
 }
 .comicTitle{
@@ -71,8 +71,8 @@ console.log(name)
   margin-bottom: 10%;
 }
 .comicdeCon{
-  margin-left: 3%;
-  width: auto;
+  margin-left: 5%;
+  width: 300px;
   height: auto;
 }
 .comicBg{

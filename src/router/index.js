@@ -21,7 +21,7 @@ const router = createRouter({
       component: () => { return import('../components/Register.vue')}
     },
     {
-      path: '/Detail/:name*',
+      path: '/Detail/:id*',
       component: () => import('../components/Detail.vue')
     }
   ]
