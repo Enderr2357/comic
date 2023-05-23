@@ -21,9 +21,19 @@ const router = createRouter({
       component: () => { return import('../components/Register.vue')}
     },
     {
-      path: '/Detail',
+      path: '/Detail/:id*',
       component: () => import('../components/Detail.vue')
     }
   ]
 })
+export const requestUrlParam1 = () => {
+  var url = location.href
+  var arrStr = url.split("/")
+  var len = arrStr.length
+  if (len > 1) {
+    return arrStr[4]
+  } else {
+    return ""
+  }
+}
 export default router
