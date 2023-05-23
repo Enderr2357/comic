@@ -18,7 +18,11 @@ const router = createRouter({
     },
     {
       path: '/Register',
-      component: () => { return import('../components/Register.vue')}
+      component: () => { return import('../components/Register.vue') }
+    },
+    {
+      path: '/Factory',
+      component: () => { return import('../components/Factory.vue') }
     },
     {
       path: '/Detail/:name*',

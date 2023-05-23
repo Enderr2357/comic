@@ -19,17 +19,47 @@
     }
   ],
   "profile": {
-    "data1": {
-      "__v_isShallow": false,
-      "__v_isRef": true,
-      "_rawValue": [
-        "",
-        ""
-      ],
-      "_value": [
-        "",
-        ""
-      ]
-    }
+    "data": [
+      {
+        "id": 1,
+        "category": "国漫"
+      },
+      {
+        "id": 2,
+        "category": "日漫"
+      },
+      {
+        "id": 3,
+        "category": "校园"
+      },
+      {
+        "id": 4,
+        "category": "青年"
+      },
+      {
+        "id": 5,
+        "category": "玄幻"
+      },
+      {
+        "id": 6,
+        "category": "恋爱"
+      },
+      {
+        "id": 7,
+        "category": "武侠"
+      },
+      {
+        "id": 8,
+        "category": "恐怖"
+      },
+      {
+        "id": 9,
+        "category": "搞笑"
+      },
+      {
+        "id": 10,
+        "category": "都市"
+      }
+    ]
   }
 }

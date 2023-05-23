@@ -1,11 +1,10 @@
 <template>
   <div class="bgc">
-  <div class="HeadTitle">
-    <div class="HeadTitleLf">
-      <el-link class='link' type="warning" href="/Main">首页</el-link>
-      <el-link class='link' type="warning" href="/Main">更新</el-link>
-      <el-link class='link' type="warning" href="/Main">排行</el-link>
-  </div>
+    <div class="HeadTitle">
+      <div class="HeadTitleLf">
+        <el-link class='link' type="warning" href="/Main">首页</el-link>
+        <el-link class='link' type="warning" href="/Main">更新</el-link>
+        <el-link class='link' type="warning" href="/Factory">分类</el-link>
 
       <input v-model="search" class="radius" :style="{
           borderRadius: 'round'

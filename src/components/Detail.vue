@@ -32,8 +32,8 @@ console.log(name)
 </template>
 
 <style>
-.image-slot{
-   font-size: 30px;
+.image-slot {
+  font-size: 30px;
 }
 
 .el-image {
@@ -70,7 +70,8 @@ console.log(name)
   color:   #E6E8EB;
   margin-bottom: 10%;
 }
-.comicdeCon{
+
+.comicdeCon {
   margin-left: 3%;
   width: auto;
   height: auto;
@@ -80,8 +81,9 @@ console.log(name)
   background-image: url('../img/主页背景图片二.jpg');
   background-size: 100% 100%;
   background-attachment: fixed;
-  }
-.el-main{
+}
+
+.el-main {
   overflow: visible !important;
   padding: 0 !important;
 }
