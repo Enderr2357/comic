@@ -18,21 +18,21 @@
     <div class="main">
       <el-row gutter="20">
         <el-col :span="3">
-          <div><a href="/Detail">
+          <div><a href="/Detail/biaoren">
               <el-image :src="imgUrl1"></el-image>
             </a>
             <div class="titlesmall">镖人</div>
           </div>
         </el-col>
         <el-col :span="3">
-          <div><a href="/Detail">
+          <div><a href="/Detail/baiguitan">
               <el-image :src="imgUrl2"></el-image>
             </a>
             <div class="titlesmall">百诡谈</div>
           </div>
         </el-col>
         <el-col :span="3">
-          <div><a href="/Detail">
+          <div><a href="/Detail/ckxtwc">
               <el-image :src="imgUrl3"></el-image>
             </a>
             <div class="titlesmall">刺客信条：王朝</div>
@@ -111,7 +111,7 @@
   </div>
 </template>
 <script setup>
-const imgUrl1 = new URL('../img/comicimg/biaorenfm.jpg', import.meta.url).href
+const imgUrl1 = new URL('../img/comicimg/镖人.jpg', import.meta.url).href
 const imgUrl2 = new URL('../img/comicimg/百诡谈.jpg', import.meta.url).href
 const imgUrl3 = new URL('../img/comicimg/刺客信条：王朝.jpg', import.meta.url).href
 const imgUrl4 = new URL('../img/comicimg/凤归.jpg', import.meta.url).href
