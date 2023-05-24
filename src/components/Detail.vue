@@ -1,14 +1,46 @@
 <script setup>
+import { ref } from 'vue';
+import axios from 'axios';
 import { requestUrlParam1 } from '../router';
 const imgUrl = new URL('../img/comicimg', import.meta.url).href
 const id = requestUrlParam1();
 console.log(id)
+const comicinfo=ref([])
+const bid =ref(0)
+const bname =ref('')
+const bsrcname =ref('')
+const binfo =ref('') 
+const bmaxno =ref(0)
+const bcategory =ref('')
+const bauthor =ref(0)
+const request1 = axios.create({
+  baseURL: '/api',
+  timeout:1000
+})
+request1({
+    method: 'POST',
+    url: '/comicId',
+    params: {
+        comicid:id
+    }
+  }).then((res => {
+    console.log(res.data)
+     comicinfo.value.push(res.data)
+     console.log(typeof(comicinfo.value[0].bid))
+      bid.value=comicinfo.value[0].bid
+      bname.value=comicinfo.value[0].bname
+      bmaxno.value=comicinfo.value[0].bmaxno
+      binfo.value=comicinfo.value[0].binfo
+      bsrcname.value=comicinfo.value[0].bsrcname
+      bcategory.value=comicinfo.value[0].bcategory
+      bauthor.value=comicinfo.value[0].bauthor
+  }))
 </script>
 <template>
   <div class="comicBg">
   <div class="comicBlock">
     <div class="comicImg">
-      <el-image :src="imgUrl+'/'+name+'.jpg'"
+      <el-image :src="imgUrl+'/'+bsrcname+'.jpg'"
         style="width: auto; height: auto; max-width: 100%;
               max-height: 100%;"
         :zoom-rate="1.2"
@@ -18,13 +50,12 @@ console.log(id)
         />
     </div>
     <div class="comicdeCon">
-      <h1 class="comicTitle">镖人</h1>
-      <p class="comicInfo">作者：新漫画</p>
-      <p class="comicInfo">类别：少年漫画</p>
-      <p class="comicInfo">最新话：第35话</p>
+      <h1 class="comicTitle">{{bname}}</h1>
+      <p class="comicInfo">{{bauthor}}</p>
+      <p class="comicInfo">{{bcategory}}</p>
+      <p class="comicInfo">{{bmaxno}}</p>
        <div class="dashed"></div>
-        <p class="comicdetail">“镖”，指的是受雇的武夫，其保护的目标，亦指官府悬赏通缉的目标。
-          隋末民乱前夕，江湖上掀起了一阵腥风血雨，各路人马的恩怨情仇逐渐展开。（许先哲作品/新漫画出品）</p>
+        <p class="comicdetail">{{binfo}}</p>
        </div>
     </div>
    

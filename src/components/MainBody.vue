@@ -3,22 +3,26 @@ import axios from 'axios';
 import { ref,watch } from 'vue';
 const imgUrl1 = new URL('../img/comicimg', import.meta.url).href
 
+const request = axios.create({
+  baseURL: '/api',
+  timeout:1000
+})
 let imgid = ref(0) 
 let imgtext = ref('')
-  axios({
-    url: 'http://localhost:3000/profile',
-    method: 'GET',
-    data: {
-      data: 'data'
+const urlList=ref([])
+request({
+    method: 'POST',
+    url: '/comicName',
+    params: {
+        comicname:'all'
     }
   }).then((res => {
-    console.log(res.data.data[0].id)
-    console.log(res.data.data[0].text)
-    imgid = res.data.data[0].id;
-    imgtext = res.data.data[0].text
-    console.log(imgtext)
+    console.log(res.data)
+    res.data.forEach(element => {
+      urlList.value.push(element)
+    });
+    console.log(urlList.value[0])
   }))
-  watch()
 </script>
 <template>
   <div class="bg">
@@ -37,13 +41,13 @@ let imgtext = ref('')
       <li><el-link type="info">都市</el-link></li>
     </ul>
     <div class="titlemid">热门更新</div><br>
-    <div class="main">
+    <div class="main"> 
       <el-row gutter="20">
-        <el-col :span="3">  
-          <div><a :href="'/Detail/'+imgid">
-              <el-image :src="imgUrl1+'/'+imgtext+'.jpg'"></el-image>
-            </a>
-            <div class="titlesmall">镖人</div> 
+        <el-col :span="3" v-for="item in urlList">
+          <div> <a :href="'/Detail/'+item.bId">
+            <el-image :src="imgUrl1+'/'+item.bSrcname+'.jpg'"></el-image>
+            <div class="titlesmall">{{item.bName}}</div>
+          </a>
           </div>
         </el-col>
       </el-row>
@@ -97,6 +101,7 @@ let imgtext = ref('')
     </div><br>
   </div>
 </template>
+
 
 
 <style>
