@@ -3,24 +3,24 @@
     <div class="HeadTitle">
       <div class="HeadTitleLf">
         <el-link class='link' type="warning" href="/Main">首页</el-link>
-        <el-link class='link' type="warning" href="/Main">更新</el-link>
+        <el-link class='link' type="warning" href="/User">更新</el-link>
         <el-link class='link' type="warning" href="/Factory">分类</el-link>
-
+      </div>
       <input v-model="search" class="radius" :style="{
-          borderRadius: 'round'
-            ? `var(--el-border-radius-round)`
-             : '',
-          }" type="text" placeholder="搜索漫画">
+        borderRadius: 'round'
+          ? `var(--el-border-radius-round)`
+          : '',
+      }" type="text" placeholder="搜索漫画">
 
-  
+
       <div class="HeadTitleRt">
         <v-if>
           <el-link class='link' type="warning" href="/Login">登录</el-link>
           <el-link class='link' type="warning" href="/Register">注册</el-link>
         </v-if>
       </div>
+    </div>
   </div>
-</div>
 </template>
 <script setup>
 </script>
@@ -28,16 +28,18 @@
 .HeadTitle {
   display: flex;
   justify-content: space-between;
-  background-color:black;
+  background-color: black;
   margin-left: 5%;
   margin-right: 5%;
   /* box-shadow: '--el-box-shadow-dark' */
 }
-.demo-radius{
+
+.demo-radius {
   margin-top: 1%;
   height: 50px;
 }
- .radius {
+
+.radius {
   height: 30px;
   border: 2px solid var(--el-border-color);
   border-radius: 0;
@@ -56,18 +58,21 @@
   flex-direction: row-reverse;
   margin-top: 1%;
 }
-.bgc{
+
+.bgc {
   background-color: black;
   height: 100%;
 }
+
 .link {
   margin-right: 15px;
   font-size: 20px;
-  }
+}
+
 .el-header {
-    padding:0 !important;
-    box-sizing: border-box;
-    flex-shrink: 0;
-    height: 80px;
+  padding: 0 !important;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  height: 80px;
 }
 </style>

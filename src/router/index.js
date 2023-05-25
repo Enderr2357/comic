@@ -27,6 +27,28 @@ const router = createRouter({
     {
       path: '/Detail/:id*',
       component: () => import('../components/Detail.vue')
+    },
+    {
+      path: '/User',
+      component: () => import('../components/User.vue'),
+      children: [
+        {
+          path: '',
+          component: () => import('../components/Subscribe.vue')
+        },
+        {
+          path: 'Subscribe',
+          component: () => import('../components/Subscribe.vue')
+        },
+        {
+          path: 'History',
+          component: () => import('../components/History.vue')
+        },
+        {
+          path: 'Settings',
+          component: () => import('../components/Settings.vue')
+        },
+      ]
     }
   ]
 })
