@@ -12,28 +12,44 @@ const bsrcname =ref('')
 const binfo =ref('') 
 const bmaxno =ref(0)
 const bcategory =ref('')
-const bauthor =ref(0)
+const bauthor = ref(0)
+const bnos=ref([])
 const request1 = axios.create({
   baseURL: '/api',
   timeout:1000
 })
-request1({
-    method: 'POST',
-    url: '/comicId',
-    params: {
-        comicid:id
-    }
+// request1({
+//     method: 'POST',
+//     url: '/comicId',
+//     params: {
+//         comicid:id
+//     }
+axios({
+  method: 'GET',
+  url: 'http://localhost:3000/comic',
+  params: {
+    bid: id
+  }
   }).then((res => {
     console.log(res.data)
-     comicinfo.value.push(res.data)
-     console.log(typeof(comicinfo.value[0].bid))
-      bid.value=comicinfo.value[0].bid
-      bname.value=comicinfo.value[0].bname
-      bmaxno.value=comicinfo.value[0].bmaxno
-      binfo.value=comicinfo.value[0].binfo
-      bsrcname.value=comicinfo.value[0].bsrcname
-      bcategory.value=comicinfo.value[0].bcategory
-      bauthor.value=comicinfo.value[0].bauthor
+    //  comicinfo.value.push(res.data)
+    //  console.log(comicinfo.value)
+    //   bid.value=comicinfo.value[0].bid
+    //   bname.value=comicinfo.value[0].bname
+    //   bmaxno.value=comicinfo.value[0].bmaxno
+    //   binfo.value=comicinfo.value[0].binfo
+    //   bsrcname.value=comicinfo.value[0].bsrcname
+    //   bcategory.value=comicinfo.value[0].bcategory
+    //   bauthor.value=comicinfo.value[0].bauthor
+    bid.value = res.data[0].bid
+    bname.value = res.data[0].bname
+    bsrcname.value = res.data[0].bsrcname
+    binfo.value = res.data[0].binfo
+    bmaxno.value = res.data[0].bmaxno
+    bcategory.value = res.data[0].bcategory
+    bauthor.value = res.data[0].bauthor
+    bnos.value = res.data[0].no
+    console.log(bnos.value)
   }))
 </script>
 <template>
@@ -58,18 +74,36 @@ request1({
         <p class="comicdetail">{{binfo}}</p>
        </div>
     </div>
-   
-          
+
+    <div class="comicno">
+        <el-row :gutter="20" >
+            <el-col :span="6" v-for="item in bnos">
+              <a class="comicChapter" href="">{{item.noname}}</a>
+            </el-col>
+        </el-row>
+    </div>
   </div>
 </template>
 
 <style>
+.el-col{
+  margin-bottom: 20px;
+}
+.comicChapter{
+  color: #E6E8EB;
+  font-size:14px;
+}
 .image-slot{
    font-size: 30px;
 }
-
+.comicno{
+  width: 700px;
+  margin-left: 15%;
+  box-shadow: -1px 7px 22px #b4b3b3;
+  text-align: center;
+}
 .comicBlock{
-  height: 408px;
+  height: 360px;
   width: 100%;
   display: flex;
 }

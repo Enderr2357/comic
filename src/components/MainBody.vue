@@ -10,18 +10,26 @@ const request = axios.create({
 let imgid = ref(0) 
 let imgtext = ref('')
 const urlList=ref([])
-request({
-    method: 'POST',
-    url: '/comicName',
-    params: {
-        comicname:'all'
-    }
+// request({
+//     method: 'POST',
+//     url: '/comicName',
+//     params: {
+//         comicname:'all'
+//     }
+axios({
+  method: 'GET',
+  url: 'http://localhost:3000/comic',
+  data: {
+    
+  }
   }).then((res => {
     console.log(res.data)
-    res.data.forEach(element => {
+    for (let index = 0; index < res.data.length; index++) {
+      const element = res.data[index];
       urlList.value.push(element)
-    });
-    console.log(urlList.value[0])
+      console.log(element)
+    }
+    console.log(urlList.value)
   }))
 </script>
 <template>
@@ -44,9 +52,9 @@ request({
     <div class="main"> 
       <el-row gutter="20">
         <el-col :span="3" v-for="item in urlList">
-          <div> <a :href="'/Detail/'+item.bId">
-            <el-image :src="imgUrl1+'/'+item.bSrcname+'.jpg'"></el-image>
-            <div class="titlesmall">{{item.bName}}</div>
+          <div> <a :href="'/Detail/'+item.bid">
+            <el-image :src="imgUrl1+'/'+item.bsrcname+'.jpg'"></el-image>
+            <div class="titlesmall">{{item.bname}}</div>
           </a>
           </div>
         </el-col>
