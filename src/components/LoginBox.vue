@@ -13,7 +13,7 @@
       <div class="LgText">账号</div>
       <div class="demo-radius" >
           
-         <el-input v-model="username" class="radius"
+         <el-input v-model="useraccount" class="radius"
           :style="{ 
             borderRadius: 'round'
               ? `var(--el-border-radius-round)`
@@ -61,7 +61,7 @@
 import axios from 'axios'
 import { ref } from 'vue';
 
-let username = ref('');
+let useraccount = ref('');
 let password = ref('');
 const imgUrl=new URL('../img/注册登录图片.png',import.meta.url).href
 const request = axios.create({
@@ -73,16 +73,12 @@ const login = () => {
     method: 'POST',
     url: '/login.html',
     params: {
-      username: username.value,
+      useraccount: useraccount.value,
     },
     data: {
       
     }
   }).then((res => {
-    // console.log(res.data)
-    // console.log(res.data[0].username)
-    // console.log(res.data[0].password)
-    console.log(username)
     if (res.data[0].username == username.value && res.data[0].password == password.value) { 
       console.log('登陆成功')
     }

@@ -1,7 +1,41 @@
+<script setup>
+import axios from 'axios';
+import { ref,watch } from 'vue';
+const imgUrl1 = new URL('../img/comicimg', import.meta.url).href
+
+const request = axios.create({
+  baseURL: '/api',
+  timeout:1000
+})
+let imgid = ref(0) 
+let imgtext = ref('')
+const urlList=ref([])
+// request({
+//     method: 'POST',
+//     url: '/comicName',
+//     params: {
+//         comicname:'all'
+//     }
+axios({
+  method: 'GET',
+  url: 'http://localhost:3000/comic',
+  data: {
+    
+  }
+  }).then((res => {
+    console.log(res.data)
+    for (let index = 0; index < res.data.length; index++) {
+      const element = res.data[index];
+      urlList.value.push(element)
+      console.log(element)
+    }
+    console.log(urlList.value)
+  }))
+</script>
 <template>
   <div class="bg">
     <div class="titlebig">欢迎使用漫画网站</div><br>
-    <ul>
+    <ul> 
       <li><el-link type="info">全部</el-link></li>
       <li><el-link type="info">国漫</el-link></li>
       <li><el-link type="info">日漫</el-link></li>
@@ -15,54 +49,19 @@
       <li><el-link type="info">都市</el-link></li>
     </ul>
     <div class="titlemid">热门更新</div><br>
-    <div class="main">
+    <div class="main"> 
       <el-row gutter="20">
-        <el-col :span="3">
-          <div><a href="/Detail/biaoren">
-              <el-image :src="imgUrl1"></el-image>
-            </a>
-            <div class="titlesmall">镖人</div>
-          </div>
-        </el-col>
-        <el-col :span="3">
-          <div><a href="/Detail/baiguitan">
-              <el-image :src="imgUrl2"></el-image>
-            </a>
-            <div class="titlesmall">百诡谈</div>
-          </div>
-        </el-col>
-        <el-col :span="3">
-          <div><a href="/Detail/ckxtwc">
-              <el-image :src="imgUrl3"></el-image>
-            </a>
-            <div class="titlesmall">刺客信条：王朝</div>
-          </div>
-        </el-col>
-        <el-col :span="3">
-          <div><a href="/Detail">
-              <el-image :src="imgUrl4"></el-image>
-            </a>
-            <div class="titlesmall">凤归</div>
-          </div>
-        </el-col>
-        <el-col :span="3">
-          <div><a href="/Detail">
-              <el-image :src="imgUrl5"></el-image>
-            </a>
-            <div class="titlesmall">诡水疑云</div>
-          </div>
-        </el-col>
-        <el-col :span="3">
-          <div><a href="/Detail">
-              <el-image :src="imgUrl6"></el-image>
-            </a>
-            <div class="titlesmall">国魂</div>
+        <el-col :span="3" v-for="item in urlList">
+          <div> <a :href="'/Detail/'+item.bid">
+            <el-image :src="imgUrl1+'/'+item.bsrcname+'.jpg'"></el-image>
+            <div class="titlesmall">{{item.bname}}</div>
+          </a>
           </div>
         </el-col>
       </el-row>
     </div><br>
     <div class="titlemid">人气排行</div><br>
-    <div class="main">
+    <div class="main"> 
       <el-row gutter="20">
         <el-col :span="3">
           <div><a href="/Detail">
@@ -110,20 +109,8 @@
     </div><br>
   </div>
 </template>
-<script setup>
-const imgUrl1 = new URL('../img/comicimg/镖人.jpg', import.meta.url).href
-const imgUrl2 = new URL('../img/comicimg/百诡谈.jpg', import.meta.url).href
-const imgUrl3 = new URL('../img/comicimg/刺客信条：王朝.jpg', import.meta.url).href
-const imgUrl4 = new URL('../img/comicimg/凤归.jpg', import.meta.url).href
-const imgUrl5 = new URL('../img/comicimg/诡水疑云.jpg', import.meta.url).href
-const imgUrl6 = new URL('../img/comicimg/国魂.jpg', import.meta.url).href
-const imgUrl7 = new URL('../img/comicimg/赤地万里.jpg', import.meta.url).href
-const imgUrl8 = new URL('../img/comicimg/回想.jpg', import.meta.url).href
-const imgUrl9 = new URL('../img/comicimg/灵墟游记.jpg', import.meta.url).href
-const imgUrl10 = new URL('../img/comicimg/猫之茗.jpg', import.meta.url).href
-const imgUrl11 = new URL('../img/comicimg/史上最强.jpg', import.meta.url).href
-const imgUrl12 = new URL('../img/comicimg/三月初三.jpg', import.meta.url).href
-</script>
+
+
 
 <style>
 .el-row {
