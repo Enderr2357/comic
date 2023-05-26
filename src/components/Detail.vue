@@ -75,12 +75,13 @@ axios({
       <div class="comicnobody">
         <el-row :gutter="20">
           <el-col :span="6" v-for="item in bnos">
-            <a class="comicChapter" href="/Reading">{{ item.noname }}</a>
+            <a class="comicChapter" :href="'/Reading/'+bid+'/'+item.noid">{{ item.noname }}</a>
           </el-col>
         </el-row>
       </div>
     </div>
     <div class="line"></div>
+  </div>
   </div>
 </template>
 

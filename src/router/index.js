@@ -25,8 +25,8 @@ const router = createRouter({
       component: () => { return import('../components/Category.vue') }
     },
     {
-      path: '/Reading',
-      component: () => { return import('../components/Reading.vue') }
+      path: '/Reading/:id*',
+      component: () =>import('../components/Reading.vue') 
     },
     {
       path: '/Detail/:id*',
@@ -57,12 +57,18 @@ const router = createRouter({
   ]
 })
 export const requestUrlParam1 = () => {
+  console.log("进来")
   var url = location.href
   var arrStr = url.split("/")
   var len = arrStr.length
-  if (len > 1) {
+  if (len ==5) {
     return arrStr[4]
-  } else {
+  }
+  else if (len == 6) {
+    var list=[arrStr[4],arrStr[5]]
+    return list
+  }
+  else {
     return ""
   }
 }

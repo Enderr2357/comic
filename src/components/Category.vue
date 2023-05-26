@@ -35,7 +35,7 @@
         <div class="categorybox" v-for="item in comicinfo">
           <el-row>
             <el-col :span="3">
-              <a href="/Detail/biaoren">
+              <a :href="'/Detail/'+item.bid">
                 <el-image :src="imgUrl+'/'+item.bsrcname+'.jpg'"></el-image>
               </a>
             </el-col>
@@ -133,7 +133,7 @@ export default {
         this.ctgname[index] = element;
       }
        }))
-    if (this.sendid != null) {
+    if (this.sendid != 0) {
       this.comicinfo = {}
       console.log("传进来的" + this.sendid)
       this.sendid = Number(this.sendid)
