@@ -53,6 +53,24 @@ const router = createRouter({
           component: () => import('../components/Settings.vue')
         },
       ]
+    },
+    {
+      path: '/Admin',
+      component: () => import('../components/Admin.vue'),
+      children: [
+        {
+          path: '',
+          component: () => import('../components/UserManage.vue')
+        },
+        {
+          path: 'UserManage',
+          component: () => import('../components/UserManage.vue')
+        },
+        {
+          path: 'ComicManage',
+          component: () => import('../components/ComicManage.vue')
+        },
+      ]
     }
   ]
 })
