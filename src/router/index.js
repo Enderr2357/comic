@@ -21,8 +21,8 @@ const router = createRouter({
       component: () => { return import('../components/Register.vue') }
     },
     {
-      path: '/Factory',
-      component: () => { return import('../components/Factory.vue') }
+      path: '/Category/:id*',
+      component: () => { return import('../components/Category.vue') }
     },
     {
       path: '/Detail/:id*',
