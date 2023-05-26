@@ -4,7 +4,7 @@
       <div class="HeadTitleLf">
         <el-link class='link' type="warning" href="/Main">首页</el-link>
         <el-link class='link' type="warning" href="/User">更新</el-link>
-        <el-link class='link' type="warning" href="/Factory">分类</el-link>
+        <el-link class='link' type="warning" href="/Category">分类</el-link>
       </div>
       <input v-model="search" class="radius" :style="{
         borderRadius: 'round'

@@ -55,30 +55,16 @@ axios({
 </script>
 <template>
   <div class="comicBg">
-
-    <div class="comicBlock">
-
-      <el-row class="img">
-        <el-col :span="20">
-          <div class="comicImg">
-            <el-image :src="imgUrl + '/' + bsrcname + '.jpg'" :preview-src-list="[imgUrl]" :initial-index="1"
-              fit="scale-down" />
-          </div>
-        </el-col>
-      </el-row>
-
-      <div class="comicdeCon">
-        <h1 class="comicTitle">{{ bname }}</h1>
-        <div class="dashed"></div>
-        <p class="comicInfo">{{ bauthor }}</p>
-        <p class="comicInfo">{{ bcategory }}</p>
-        <p class="comicInfo">{{ bmaxno }}</p>
-        <div class="dashed"></div>
-        <p class="comicdetail">{{ binfo }}</p>
-        <el-button type="primary" size="large" :icon="Right">开始阅读</el-button>
-        <el-button type="warning" size="large" :icon="Star">订阅</el-button>
-      </div>
-
+  <div class="comicBlock">
+    <div class="comicImg">
+      <el-image :src="imgUrl+'/'+bsrcname+'.jpg'"
+        style="width: auto; height: auto; max-width: 100%;
+              max-height: 100%;"
+        :zoom-rate="1.2"
+        :preview-src-list="[imgUrl + '/' + bsrcname + '.jpg']"
+        :initial-index="1"
+        fit="contain" 
+        />
     </div>
 
     <div class="comicno">

@@ -120,43 +120,62 @@ export default {
     }
   },
   created() {
-   
-      console.log("点进来的")
-      axios({
-        url: 'http://localhost:3000/category',
-        method: 'GET',
-        data: {
-        }
-      }).then((res => {
-        console.log(res.data[0].category)
-        for (let index = 0; index < res.data.length; index++) {
-          const element = res.data[index].category;
-          this.ctgname[index] = element;
-        }
-      }))
-    
-    if(this.sendid !=0) { 
-      console.log("传进来的"+this.sendid)
+    console.log("点进来的")
+    axios({
+      url: 'http://localhost:3000/category',
+      method: 'GET',
+      data: {
+      }
+    }).then((res => {
+      console.log(res.data[0].category)
+      for (let index = 0; index < res.data.length; index++) {
+        const element = res.data[index].category;
+        this.ctgname[index] = element;
+      }
+       }))
+    if (this.sendid != null) {
+      this.comicinfo = {}
+      console.log("传进来的" + this.sendid)
       this.sendid = Number(this.sendid)
-      
+
       axios({
         url: 'http://localhost:3000/category',
         method: 'GET',
         params: {
-          id:this.sendid
+          id: this.sendid
         }
       }).then((res => {
         console.log(res.data)
-        
-        
+
+
         for (let index = 0; index < res.data.length; index++) {
-         const element = res.data[index];
+          const element = res.data[index];
           this.ctgname[index] = element.category
         }
         console.log(this.ctgname[0])
-         this.factoryChange(this.ctgname[0].category,this.sendid-1)
+        this.factoryChange(this.ctgname[0].category, this.sendid - 1)
       }))
     }
+    else {
+      
+        axios({
+          url: 'http://localhost:3000/comic',
+          method: 'GET',
+          params: {
+          }
+        }).then((res => {
+          console.log(res.data)
+          if (res.data.length > 0) {
+            for (let index = 0; index < res.data.length; index++) {
+              const element = res.data[index];
+              this.comicinfo[index] = element
+            }
+            //console.log(this.comicinfo)
+          }
+        }))
+     
+    }
+    
   }
 }
 </script>
