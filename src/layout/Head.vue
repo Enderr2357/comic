@@ -3,8 +3,9 @@
     <div class="HeadTitle">
       <div class="HeadTitleLf">
         <el-link class='link' type="warning" href="/Main">首页</el-link>
-        <el-link class='link' type="warning" href="/User">更新</el-link>
         <el-link class='link' type="warning" href="/Category">分类</el-link>
+        <el-link class='link' type="warning" href="/User">用户</el-link>
+        <el-link class='link' type="warning" href="/Administrator">管理员</el-link>
       </div>
       <input v-model="search" class="radius" :style="{
         borderRadius: 'round'

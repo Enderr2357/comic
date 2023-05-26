@@ -72,6 +72,7 @@ axios({
       <el-icon color="orange">
         <List />
       </el-icon>
+      <div class="midline"></div>
       <div class="comicnobody">
         <el-row :gutter="20">
           <el-col :span="6" v-for="item in bnos">
@@ -163,6 +164,14 @@ axios({
   background-image: url('../img/主页背景图片二.jpg');
   background-size: 100% 100%;
   background-attachment: fixed;
+}
+
+.midline {
+  margin-top: 1%;
+  margin-left: 9%;
+  width: 82%;
+  height: 0;
+  border-top: 1px solid var(--el-border-color);
 }
 
 .line {

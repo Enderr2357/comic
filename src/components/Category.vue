@@ -8,13 +8,13 @@
         <el-row>
           <el-col :span="16">
             <el-menu active-text-color="#ffd04b" background-color="none" text-color="#fff">
-              <el-menu-item index="1" @click="factoryChange('全部',-1)">
+              <el-menu-item index="1" @click="factoryChange('全部', -1)">
                 <el-icon>
                   <House />
                 </el-icon>
                 <span> 全部 </span>
               </el-menu-item>
-              <el-menu-item v-for="(name, index) in ctgname" :index=index @click="factoryChange(name,index)">
+              <el-menu-item v-for="(name, index) in ctgname" :index=index @click="factoryChange(name, index)">
                 <el-icon>
                   <Notebook />
                 </el-icon>
@@ -35,20 +35,21 @@
         <div class="categorybox" v-for="item in comicinfo">
           <el-row>
             <el-col :span="3">
-              <a :href="'/Detail/'+item.bid">
-                <el-image :src="imgUrl+'/'+item.bsrcname+'.jpg'"></el-image>
+              <a :href="'/Detail/' + item.bid">
+                <el-image :src="imgUrl + '/' + item.bsrcname + '.jpg'"></el-image>
               </a>
             </el-col>
             <el-col :span="16">
-              <span class="midtitle"> {{item.bname}} </span><br>
-              <span class="comicInfo"> {{item.bauthor}}</span><br>
-              <span class="comicInfo"> {{item.bmaxno}}</span>
-              <p class="comicdetail">{{item.binfo}}</p>
+              <span class="midtitle"> {{ item.bname }} </span><br>
+              <span class="comicInfo"> {{ item.bauthor }}</span><br>
+              <span class="comicInfo"> {{ item.bmaxno }}</span>
+              <div class="dashed"></div>
+              <p class="comicdetail">{{ item.binfo }}</p>
             </el-col>
             <div class="line"></div>
           </el-row>
         </div>
-        
+
       </el-main>
     </el-container>
     <el-pagination class="page" background layout="prev, pager, next" :total="1000" />
@@ -66,7 +67,7 @@ export default {
       cid: 0,
       sendid: requestUrlParam1(),
       comicinfo: {},
-      active:false
+      active: false
     }
   },
   methods: {
@@ -75,11 +76,11 @@ export default {
       this.message = name
       if (name == '全部' && index == -1) {
         axios({
-            url: 'http://localhost:3000/comic',
-             method: 'GET',
-             params: {
-              }
-        }).then((res => { 
+          url: 'http://localhost:3000/comic',
+          method: 'GET',
+          params: {
+          }
+        }).then((res => {
           //console.log(res.data[0].category)
           for (let index = 0; index < res.data.length; index++) {
             const element = res.data[index];
@@ -89,37 +90,38 @@ export default {
       }
       else {
         console.log("初始化进来了")
-      axios({
-        url: 'http://localhost:3000/category',
-        method: 'GET',
-        params: {
-          id:index+1
-        }
-      }).then((res => { 
-        console.log(res.data)
-        this.cid = res.data[0].id
-        this.message=res.data[0].category
         axios({
-        url: 'http://localhost:3000/comic',
-        method: 'GET',
-        params: {
-          bcategory: this.cid
-        }
-        }).then((res => { 
-          console.log(res.data)
-          if (res.data.length > 0) {
-            for (let index = 0; index < res.data.length; index++) {
-              const element = res.data[index];
-              this.comicinfo[index] = element
-            }
-            //console.log(this.comicinfo)
+          url: 'http://localhost:3000/category',
+          method: 'GET',
+          params: {
+            id: index + 1
           }
-      }))
-      }))
+        }).then((res => {
+          console.log(res.data)
+          this.cid = res.data[0].id
+          this.message = res.data[0].category
+          axios({
+            url: 'http://localhost:3000/comic',
+            method: 'GET',
+            params: {
+              bcategory: this.cid
+            }
+          }).then((res => {
+            console.log(res.data)
+            if (res.data.length > 0) {
+              for (let index = 0; index < res.data.length; index++) {
+                const element = res.data[index];
+                this.comicinfo[index] = element
+              }
+              //console.log(this.comicinfo)
+            }
+          }))
+        }))
       }
     }
   },
   created() {
+
     console.log("点进来的")
     axios({
       url: 'http://localhost:3000/category',
@@ -132,9 +134,9 @@ export default {
         const element = res.data[index].category;
         this.ctgname[index] = element;
       }
-       }))
+    }))
+
     if (this.sendid != 0) {
-      this.comicinfo = {}
       console.log("传进来的" + this.sendid)
       this.sendid = Number(this.sendid)
 
@@ -185,7 +187,6 @@ const imgUrl = new URL('../img/comicimg', import.meta.url).href
 </script>
 
 <style>
-
 .bg {
   height: auto;
   background-image: url('../img/主页背景图片二.jpg');
@@ -218,18 +219,27 @@ const imgUrl = new URL('../img/comicimg', import.meta.url).href
   border-top: 1px solid var(--el-border-color);
 }
 
+.dashed {
+  margin-top: 1%;
+  margin-left: 1%;
+  border-top: 2px dashed var(--el-border-color);
+  width: 25%;
+}
+
 .categorybox {
   padding-top: 2%;
   padding-left: 1%;
 }
 
 .comicInfo {
+  padding-left: 1%;
   height: 1%;
   font-size: large;
   color: white;
 }
 
 .comicdetail {
+  padding-left: 1%;
   padding-top: 2%;
   height: 1%;
   font-size: medium;
@@ -247,6 +257,7 @@ const imgUrl = new URL('../img/comicimg', import.meta.url).href
 }
 
 .midtitle {
+  padding-left: 1%;
   height: 1%;
   font-size: x-large;
   color: white;

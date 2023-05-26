@@ -2,12 +2,12 @@
 import axios from 'axios';
 import { ref } from 'vue';
 const imgUrl1 = new URL('../img/comicimg', import.meta.url).href
-const categoryinfo=ref([])
+const categoryinfo = ref([])
 const request = axios.create({
   baseURL: '/api',
   timeout: 1000
 })
-const imgInfo=ref([])
+const imgInfo = ref([])
 // request({
 //     method: 'POST',
 //     url: '/comicName',
@@ -17,18 +17,18 @@ const imgInfo=ref([])
 axios({
   method: 'GET',
   url: 'http://localhost:3000/comic',
-  data: {    
+  data: {
   }
-  }).then((res => {
-    console.log(res.data)
-    for (let index = 0; index < res.data.length; index++) {
-      const element = res.data[index];
-      imgInfo.value.push(element)
-    }
-    console.log(imgInfo.value)
-  }))
+}).then((res => {
+  console.log(res.data)
+  for (let index = 0; index < res.data.length; index++) {
+    const element = res.data[index];
+    imgInfo.value.push(element)
+  }
+  console.log(imgInfo.value)
+}))
 
-  axios({
+axios({
   method: 'GET',
   url: 'http://localhost:3000/category',
   data: {
@@ -46,24 +46,25 @@ axios({
 <template>
   <div class="bg">
     <div class="titlebig">欢迎使用漫画网站</div><br>
-    <div style="display:inline-flex;margin-left: 33%;">
-    <ul v-for="value in categoryinfo"> 
-      <li><el-link type="info" style="margin-left: 10px;" :href="'/Category/'+value.id">{{value.category}}</el-link></li>
-    </ul>
+    <div style="display:inline-flex;margin-left: 38%;">
+      <ul v-for="value in categoryinfo">
+        <li><el-link type="info" style="margin-left: 10px;" :href="'/Category/' + value.id">{{ value.category }}</el-link>
+        </li>
+      </ul>
     </div>
     <div class="titlemid">热门更新</div><br>
-    <div class="main"> 
+    <div class="main">
       <el-row gutter="20">
         <el-col :span="3" v-for="item in imgInfo">
-          <div> <a :href="'/Detail/'+item.bid">
-            <el-image :src="imgUrl1+'/'+item.bsrcname+'.jpg'"></el-image>
-            <div class="titlesmall">{{item.bname}}</div>
-          </a>
+          <div> <a :href="'/Detail/' + item.bid">
+              <el-image :src="imgUrl1 + '/' + item.bsrcname + '.jpg'"></el-image>
+              <div class="titlesmall">{{ item.bname }}</div>
+            </a>
           </div>
         </el-col>
       </el-row>
     </div><br>
-    
+
   </div>
 </template>
 
