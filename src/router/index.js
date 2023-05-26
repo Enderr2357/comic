@@ -25,6 +25,10 @@ const router = createRouter({
       component: () => { return import('../components/Factory.vue') }
     },
     {
+      path: '/Reading',
+      component: () => { return import('../components/Reading.vue') }
+    },
+    {
       path: '/Detail/:id*',
       component: () => import('../components/Detail.vue')
     },

@@ -35,7 +35,7 @@
         <div class="categorybox">
           <el-row>
             <el-col :span="3">
-              <a href="/Detail/biaoren">
+              <a href="/Detail/1">
                 <el-image :src="imgUrl"></el-image>
               </a>
             </el-col>
@@ -53,7 +53,7 @@
         <div class="categorybox">
           <el-row>
             <el-col :span="3">
-              <a href="/Detail/biaoren">
+              <a href="/Detail/1">
                 <el-image :src="imgUrl"></el-image>
               </a>
             </el-col>
@@ -71,7 +71,7 @@
         <div class="categorybox">
           <el-row>
             <el-col :span="3">
-              <a href="/Detail/biaoren">
+              <a href="/Detail/1">
                 <el-image :src="imgUrl"></el-image>
               </a>
             </el-col>
