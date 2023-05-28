@@ -66,7 +66,7 @@ let password = ref('');
 const imgUrl=new URL('../img/注册登录图片.png',import.meta.url).href
 const request = axios.create({
   baseURL: '/api',
-  timeout:1000
+  timeout:10000
 })
 const login = () => {
   request({

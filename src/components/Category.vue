@@ -1,3 +1,84 @@
+<script setup>
+import axios from 'axios';
+import { ref } from 'vue';
+import { requestUrlParam1 } from '../router';
+const imgUrl = new URL('../img/comicimg', import.meta.url).href
+const categoryinfo=ref([])
+const comicinfo=ref([])
+const message=ref('')
+const receiveid=requestUrlParam1()
+const data=ref('')
+//接受其他页面带参跳转的分类页面
+
+const request = axios.create({
+  baseURL: '/api',
+  timeout: 10000
+})
+//类别改变
+const factoryChange=(name,index)=>{
+  comicinfo.value=[]
+ 
+  console.log(index)
+  request({
+  url:'/comicName',
+  methods:'GET',
+  params:{
+    comicname:index
+  }
+}).then((res=>{
+  console.log(res.data)
+  res.data.forEach(element => {
+    comicinfo.value.push(element)
+  });
+  console.log(comicinfo.value)
+}))
+}
+if(receiveid!=0){
+  data.value=receiveid
+  request({
+  url:'/comiccategory',
+  methods:'GET',
+  params:{
+    data: data.value
+  }
+}).then((res=>{
+  console.log(res.data)
+  const c1=res.data
+  message.value=c1.cateName
+}))
+}
+else{
+  data.value='all'
+}
+//获取初始化分类
+request({
+  url:'/comiccategory',
+  methods:'GET',
+  params:{
+    data:'all'
+  }
+}).then((res=>{
+  console.log(res.data)
+  res.data.forEach(element => {
+    categoryinfo.value.push(element)
+  });
+  console.log(categoryinfo.value)
+}))
+//获取漫画
+request({
+  url:'/comicName',
+  methods:'GET',
+  params:{
+    comicname:data.value
+  }
+}).then((res=>{
+  console.log(res.data)
+  res.data.forEach(element => {
+    comicinfo.value.push(element)
+  });
+  console.log(comicinfo.value)
+}))
+</script>
 <template>
   <div class="bg">
     <el-container>
@@ -8,17 +89,17 @@
         <el-row>
           <el-col :span="16">
             <el-menu active-text-color="#ffd04b" background-color="none" text-color="#fff">
-              <el-menu-item index="1" @click="factoryChange('全部',-1)">
+              <el-menu-item index="1" @click="factoryChange('全部','all')">
                 <el-icon>
                   <House />
                 </el-icon>
                 <span> 全部 </span>
               </el-menu-item>
-              <el-menu-item v-for="(name, index) in ctgname" :index=index @click="factoryChange(name,index)">
+              <el-menu-item v-for=" item in categoryinfo" :index=index @click="factoryChange(item.cateName,item.cateId)">
                 <el-icon>
                   <Notebook />
                 </el-icon>
-                <span> {{ name }} </span>
+                <span> {{ item.cateName }} </span>
               </el-menu-item>
             </el-menu>
           </el-col>
@@ -35,15 +116,15 @@
         <div class="categorybox" v-for="item in comicinfo">
           <el-row>
             <el-col :span="3">
-              <a :href="'/Detail/'+item.bid">
-                <el-image :src="imgUrl+'/'+item.bsrcname+'.jpg'"></el-image>
+              <a :href="'/Detail/'+item.bId">
+                <el-image :src="imgUrl+'/'+item.bSrcname+'.jpg'"></el-image>
               </a>
             </el-col>
             <el-col :span="16">
-              <span class="midtitle"> {{item.bname}} </span><br>
-              <span class="comicInfo"> {{item.bauthor}}</span><br>
-              <span class="comicInfo"> {{item.bmaxno}}</span>
-              <p class="comicdetail">{{item.binfo}}</p>
+              <span class="midtitle"> {{item.bName}} </span><br>
+              <span class="comicInfo"> {{item.bAuthor}}</span><br>
+              <span class="comicInfo"> {{item.bMaxno}}</span>
+              <p class="comicdetail">{{item.bInfo}}</p>
             </el-col>
             <div class="line"></div>
           </el-row>
@@ -55,9 +136,13 @@
   </div>
 </template>
 
-<script>
+<!-- <script>
 import axios from 'axios';
 import { requestUrlParam1 } from '../router';
+const request1 = axios.create({
+  baseURL: '/api',
+  timeout: 1000
+})
 export default {
   data() {
     return {
@@ -74,11 +159,17 @@ export default {
       this.comicinfo = {}
       this.message = name
       if (name == '全部' && index == -1) {
-        axios({
-            url: 'http://localhost:3000/comic',
-             method: 'GET',
-             params: {
-              }
+        // axios({
+        //     url: 'http://localhost:3000/comic',
+        //      method: 'GET',
+        //      params: {
+        //       }
+        request({
+          url:'/comiccategory',
+          method:'GET',
+          params:{
+
+          }
         }).then((res => { 
           //console.log(res.data[0].category)
           for (let index = 0; index < res.data.length; index++) {
@@ -178,11 +269,9 @@ export default {
     
   }
 }
-</script>
+</script> -->
 
-<script setup>
-const imgUrl = new URL('../img/comicimg', import.meta.url).href
-</script>
+
 
 <style>
 
