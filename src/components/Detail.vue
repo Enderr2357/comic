@@ -6,7 +6,7 @@ import { Star, Right } from '@element-plus/icons-vue'
 const imgUrl = new URL('../img/comicimg', import.meta.url).href
 const id = requestUrlParam1();
 console.log(id)
-const chapterinfo=ref([])
+const chapterinfo = ref([])
 const comicinfo = ref([])
 const bid = ref(0)
 const bname = ref('')
@@ -21,31 +21,31 @@ const request1 = axios.create({
   timeout: 10000
 })
 request1({
-    method: 'POST',
-    url: '/comicId',
-    params: {
-        comicid:id
-    }
+  method: 'POST',
+  url: '/comicId',
+  params: {
+    comicid: id
+  }
 }).then((res => {
   console.log(res.data)
-   comicinfo.value.push(res.data)
-   console.log(comicinfo.value)
-    bid.value=comicinfo.value[0].bid
-    bname.value=comicinfo.value[0].bname
-    bmaxno.value=comicinfo.value[0].bmaxno
-    binfo.value=comicinfo.value[0].binfo
-    bsrcname.value=comicinfo.value[0].bsrcname
-    bcategory.value=comicinfo.value[0].bcategory
-    bauthor.value=comicinfo.value[0].bauthor
+  comicinfo.value.push(res.data)
+  console.log(comicinfo.value)
+  bid.value = comicinfo.value[0].bid
+  bname.value = comicinfo.value[0].bname
+  bmaxno.value = comicinfo.value[0].bmaxno
+  binfo.value = comicinfo.value[0].binfo
+  bsrcname.value = comicinfo.value[0].bsrcname
+  bcategory.value = comicinfo.value[0].bcategory
+  bauthor.value = comicinfo.value[0].bauthor
 }))
 console.log(bid.value)
 request1({
-  method:'GET',
-  url:'/comicChapter',
-  params:{
-    id:id
+  method: 'GET',
+  url: '/comicChapter',
+  params: {
+    id: id
   }
-}).then((res=>{
+}).then((res => {
   console.log("下面是章节")
   console.log(res.data)
   res.data.forEach(element => {
@@ -55,16 +55,11 @@ request1({
 </script>
 <template>
   <div class="comicBg">
-  <div class="comicBlock">
-    <div class="comicImg">
-      <el-image :src="imgUrl+'/'+bsrcname+'.jpg'"
-        style="width: auto; height: auto; max-width: 100%;
-              max-height: 100%;"
-        :zoom-rate="1.2"
-        :preview-src-list="[imgUrl + '/' + bsrcname + '.jpg']"
-        :initial-index="1"
-        fit="contain" 
-        />
+    <div class="comicBlock">
+      <div class="comicImg">
+        <el-image :src="imgUrl + '/' + bsrcname + '.jpg'" style="width: auto; height: auto; max-width: 100%;
+                      max-height: 100%;" :zoom-rate="1.2" :preview-src-list="[imgUrl + '/' + bsrcname + '.jpg']"
+          :initial-index="1" fit="contain" />
       </div>
       <div class="comicdeCon">
         <h1 class="comicTitle">{{ bname }}</h1>
@@ -87,12 +82,12 @@ request1({
       <div class="comicnobody">
         <el-row :gutter="20">
           <el-col :span="6" v-for="item in chapterinfo">
-            <a class="comicChapter" :href="'/Reading/'+bid+'/'+item.currentNo">{{ item.currentNoName }}</a>
+            <a class="comicChapter" :href="'/Reading/' + bid + '/' + item.currentNo">{{ item.currentNoName }}</a>
           </el-col>
         </el-row>
       </div>
-    <div class="line"></div>
-  </div>
+      <div class="line"></div>
+    </div>
   </div>
 </template>
 
@@ -129,6 +124,7 @@ request1({
   width: 100%;
   display: flex;
   margin-bottom: 2%;
+  margin-left: 15%;
 }
 
 .comicdetail {
@@ -149,6 +145,7 @@ request1({
   color: #E6E8EB;
   font-size: medium;
   margin-bottom: 1%;
+
 }
 
 .img {
@@ -157,6 +154,7 @@ request1({
 
 .comicImg {
   box-shadow: -1px 7px 22px #b4b3b3;
+
 }
 
 .comicTitle {
@@ -167,6 +165,7 @@ request1({
 
 .comicdeCon {
   height: auto;
+  margin-left: 3%;
 }
 
 .comicBg {

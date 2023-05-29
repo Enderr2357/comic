@@ -10,7 +10,7 @@
     </div>
     <div class="line"></div>
     <div class="img">
-      <img :src="imgUrl1+'/'+bsrcname+'/'+no+'/'+page+'.jpg'" alt="" style="height: 1500px;width: 1000px;">
+      <img :src="imgUrl1 + '/' + bsrcname + '/' + no + '/' + page + '.jpg'" alt="" style="height: 1500px;width: 1000px;">
     </div>
 
     <el-button-group class="button">
@@ -50,7 +50,7 @@ const imgUrl1 = new URL('../img', import.meta.url).href
 const src = requestUrlParam1()
 const id = src[0]
 const no = src[1]
-const page=ref(0)
+const page = ref(0)
 const bid = ref(0)
 const bname = ref('')
 const bsrcname = ref('')
@@ -59,26 +59,31 @@ const bmaxno = ref(0)
 const bcategory = ref('')
 const bauthor = ref(0)
 const bnos = ref([])
-axios({
-  url: 'http://localhost:3000/comic',
+console.log(id, no)
+const request = axios.create({
+  baseURL: '/api',
+  timeout: 10000
+})
+request({
+  url: '/comicId',
   method: 'GET',
   params: {
-    bid: id
+    comicid: id
   }
 }).then((res => {
   console.log(res.data)
-  bid.value = res.data[0].bid
-  bname.value = res.data[0].bname
-  bsrcname.value = res.data[0].bsrcname
-  binfo.value = res.data[0].binfo
-  bmaxno.value = res.data[0].bmaxno
-  bcategory.value = res.data[0].bcategory
-  bauthor.value = res.data[0].bauthor
-  bnos.value = res.data[0].no
-  
+  bid.value = res.data.bid
+  bname.value = res.data.bname
+  bsrcname.value = res.data.bsrcname
+  binfo.value = res.data.binfo
+  bmaxno.value = res.data.bmaxno
+  bcategory.value = res.data.bcategory
+  bauthor.value = res.data.bauthor
+  bnos.value = res.data.no
+
 }))
 const next = () => {
-  page.value=page.value+1
+  page.value = page.value + 1
 }
 </script>
 
