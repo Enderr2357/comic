@@ -124,7 +124,7 @@ request({
             <el-col :span="16">
               <span class="midtitle"> {{ item.bName }} </span><br>
               <span class="comicInfo"> {{ item.bAuthor }}</span><br>
-              <span class="comicInfo"> {{ item.bMaxno }}</span>
+              <span class="comicInfo"> 最新话:第{{ item.bMaxno }}话</span>
               <p class="comicdetail">{{ item.bInfo }}</p>
             </el-col>
             <div class="line"></div>

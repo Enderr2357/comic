@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
-import { requestUrlParam1 } from '../router';
+import router, { requestUrlParam1 } from '../router';
 import { Star, Right } from '@element-plus/icons-vue'
 const imgUrl = new URL('../img/comicimg', import.meta.url).href
 const id = requestUrlParam1();
@@ -52,14 +52,18 @@ request1({
     chapterinfo.value.push(element)
   });
 }))
+
+const read = (bid) => {
+  router.push('/Reading/' + bid + '/1')
+}
 </script>
 <template>
   <div class="comicBg">
     <div class="comicBlock">
       <div class="comicImg">
         <el-image :src="imgUrl + '/' + bsrcname + '.jpg'" style="width: auto; height: auto; max-width: 100%;
-                      max-height: 100%;" :zoom-rate="1.2" :preview-src-list="[imgUrl + '/' + bsrcname + '.jpg']"
-          :initial-index="1" fit="contain" />
+                                        max-height: 100%;" :zoom-rate="1.2"
+          :preview-src-list="[imgUrl + '/' + bsrcname + '.jpg']" :initial-index="1" fit="contain" />
       </div>
       <div class="comicdeCon">
         <h1 class="comicTitle">{{ bname }}</h1>
@@ -69,7 +73,9 @@ request1({
         <p class="comicInfo">{{ bmaxno }}</p>
         <div class="dashed"></div>
         <p class="comicdetail">{{ binfo }}</p>
-        <el-button type="primary" size="large" :icon="Right">开始阅读</el-button>
+        <a :href="'/Reading/' + bid + '/1'">
+          <el-button type="primary" size="large" :icon="Right">开始阅读</el-button>
+        </a>
         <el-button type="warning" size="large" :icon="Star">订阅</el-button>
       </div>
     </div>
@@ -111,6 +117,7 @@ request1({
 .comicno {
   width: 70%;
   padding-top: 1%;
+  padding-bottom: 1%;
   margin-left: 15%;
   box-shadow: 0px 3px 22px #b4b3b3;
 }
@@ -173,6 +180,8 @@ request1({
   background-image: url('../img/主页背景图片二.jpg');
   background-size: 100% 100%;
   background-attachment: fixed;
+  padding-top: 1%;
+  padding-bottom: 3%;
 }
 
 .midline {
