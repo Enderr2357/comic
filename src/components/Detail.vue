@@ -6,6 +6,7 @@ import { Star, Right } from '@element-plus/icons-vue'
 const imgUrl = new URL('../img/comicimg', import.meta.url).href
 const id = requestUrlParam1();
 console.log(id)
+const chapterinfo=ref([])
 const comicinfo = ref([])
 const bid = ref(0)
 const bname = ref('')
@@ -17,40 +18,39 @@ const bauthor = ref(0)
 const bnos = ref([])
 const request1 = axios.create({
   baseURL: '/api',
-  timeout: 1000
+  timeout: 10000
 })
-// request1({
-//     method: 'POST',
-//     url: '/comicId',
-//     params: {
-//         comicid:id
-//     }
-axios({
-  method: 'GET',
-  url: 'http://localhost:3000/comic',
-  params: {
-    bid: id
-  }
+request1({
+    method: 'POST',
+    url: '/comicId',
+    params: {
+        comicid:id
+    }
 }).then((res => {
   console.log(res.data)
-  //  comicinfo.value.push(res.data)
-  //  console.log(comicinfo.value)
-  //   bid.value=comicinfo.value[0].bid
-  //   bname.value=comicinfo.value[0].bname
-  //   bmaxno.value=comicinfo.value[0].bmaxno
-  //   binfo.value=comicinfo.value[0].binfo
-  //   bsrcname.value=comicinfo.value[0].bsrcname
-  //   bcategory.value=comicinfo.value[0].bcategory
-  //   bauthor.value=comicinfo.value[0].bauthor
-  bid.value = res.data[0].bid
-  bname.value = res.data[0].bname
-  bsrcname.value = res.data[0].bsrcname
-  binfo.value = res.data[0].binfo
-  bmaxno.value = res.data[0].bmaxno
-  bcategory.value = res.data[0].bcategory
-  bauthor.value = res.data[0].bauthor
-  bnos.value = res.data[0].no
-  console.log(bnos.value)
+   comicinfo.value.push(res.data)
+   console.log(comicinfo.value)
+    bid.value=comicinfo.value[0].bid
+    bname.value=comicinfo.value[0].bname
+    bmaxno.value=comicinfo.value[0].bmaxno
+    binfo.value=comicinfo.value[0].binfo
+    bsrcname.value=comicinfo.value[0].bsrcname
+    bcategory.value=comicinfo.value[0].bcategory
+    bauthor.value=comicinfo.value[0].bauthor
+}))
+console.log(bid.value)
+request1({
+  method:'GET',
+  url:'/comicChapter',
+  params:{
+    id:id
+  }
+}).then((res=>{
+  console.log("下面是章节")
+  console.log(res.data)
+  res.data.forEach(element => {
+    chapterinfo.value.push(element)
+  });
 }))
 </script>
 <template>
@@ -65,8 +65,19 @@ axios({
         :initial-index="1"
         fit="contain" 
         />
+      </div>
+      <div class="comicdeCon">
+        <h1 class="comicTitle">{{ bname }}</h1>
+        <div class="dashed"></div>
+        <p class="comicInfo">{{ bauthor }}</p>
+        <p class="comicInfo">{{ bcategory }}</p>
+        <p class="comicInfo">{{ bmaxno }}</p>
+        <div class="dashed"></div>
+        <p class="comicdetail">{{ binfo }}</p>
+        <el-button type="primary" size="large" :icon="Right">开始阅读</el-button>
+        <el-button type="warning" size="large" :icon="Star">订阅</el-button>
+      </div>
     </div>
-
     <div class="comicno">
       <span class="title">章节列表 </span>
       <el-icon color="orange">
@@ -75,12 +86,11 @@ axios({
       <div class="midline"></div>
       <div class="comicnobody">
         <el-row :gutter="20">
-          <el-col :span="6" v-for="item in bnos">
-            <a class="comicChapter" :href="'/Reading/'+bid+'/'+item.noid">{{ item.noname }}</a>
+          <el-col :span="6" v-for="item in chapterinfo">
+            <a class="comicChapter" :href="'/Reading/'+bid+'/'+item.currentNo">{{ item.currentNoName }}</a>
           </el-col>
         </el-row>
       </div>
-    </div>
     <div class="line"></div>
   </div>
   </div>
