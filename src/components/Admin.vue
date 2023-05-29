@@ -3,28 +3,20 @@
       <el-container>
         <el-aside class="aside">
           <el-menu>
-            <router-link to="/User/Subscribe">
+            <router-link to="/Admin/UserManage">
               <el-menu-item index="1">
                 <el-icon>
-                  <Star />
+                  <User />
                 </el-icon>
-                <p>我的订阅</p>
+                <p>用户管理</p>
               </el-menu-item>
             </router-link>
-            <router-link to="/User/History">
+            <router-link to="/Admin/ComicManage">
               <el-menu-item index="2">
                 <el-icon>
-                  <Clock />
+                  <Collection />
                 </el-icon>
-                <a>浏览历史</a>
-              </el-menu-item>
-            </router-link>
-            <router-link to="/User/Settings">
-              <el-menu-item index="3">
-                <el-icon>
-                  <setting />
-                </el-icon>
-                <a>个人设置</a>
+                <p>漫画管理</p>
               </el-menu-item>
             </router-link>
           </el-menu>
@@ -61,20 +53,7 @@
     margin-left: 5%;
     font-size: x-large;
   }
-  
-  .empty {
-    height: 20%;
-    width: 20%;
-    margin-left: 38%;
-    margin-bottom: 10%;
-  }
-  
-  .emptytext {
-    margin-left: 39%;
-    color: #73767a;
-  }
-  
-  
+
   .el-main {
     --el-main-padding: 0 !important;
   }

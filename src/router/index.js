@@ -55,23 +55,23 @@ const router = createRouter({
       ]
     },
     {
-      path: '/Administrator',
-      component: () => import('../components/Administrator.vue'),
+      path: '/Admin',
+      component: () => import('../components/Admin.vue'),
       children: [
         {
           path: '',
-          components: () => import('../components/ComicManage.vue')
-        },
-        {
-          path: 'ComicManage',
-          components: () => import('../components/ComicManage.vue')
+          component: () => import('../components/UserManage.vue')
         },
         {
           path: 'UserManage',
-          components: () => import('../components/UserManage.vue')
+          component: () => import('../components/UserManage.vue')
+        },
+        {
+          path: 'ComicManage',
+          component: () => import('../components/ComicManage.vue')
         },
       ]
-    },
+    }
   ]
 })
 export const requestUrlParam1 = () => {
