@@ -7,12 +7,15 @@
         <el-link class='link' type="warning" href="/User">用户</el-link>
         <el-link class='link' type="warning" href="/Admin">管理员</el-link>
       </div>
-      <input v-model="search" class="radius" :style="{
+      <div class="search">
+        <input v-model="search" class="radius" :style="{
         borderRadius: 'round'
           ? `var(--el-border-radius-round)`
           : '',
-      }" type="text" placeholder="搜索漫画">
-
+        }" type="text" placeholder="搜索漫画">
+        <el-button :icon="Search" circle class="sbutton" @click="bsearch()"/>
+      </div>
+      
 
       <div class="HeadTitleRt">
         <v-if>
@@ -24,6 +27,15 @@
   </div>
 </template>
 <script setup>
+import {
+  Search
+} from '@element-plus/icons-vue'
+import {  useRouter } from 'vue-router';
+const router = useRouter();
+const bsearch = () => {
+ router.push('/Search')
+}
+
 </script>
 <style>
 .HeadTitle {
@@ -35,6 +47,23 @@
   /* box-shadow: '--el-box-shadow-dark' */
 }
 
+.search{
+  padding-top: 1%;
+  position: relative;
+}
+
+.sbutton{
+  border: none;
+  outline: none;
+  position: absolute;
+  right: 0;
+}
+
+.el-button{
+  --el-button-hover-bg-color:vue;
+  --el-button-hover-text-color:darkorange;
+}
+
 .demo-radius {
   margin-top: 1%;
   height: 50px;
@@ -42,6 +71,7 @@
 
 .radius {
   height: 30px;
+  width: 100%;
   border: 2px solid var(--el-border-color);
   border-radius: 0;
   line-height: 30px;

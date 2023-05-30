@@ -21,6 +21,10 @@ const router = createRouter({
       component: () => { return import('../components/Register.vue') }
     },
     {
+      path: '/Search',
+      component: () => { return import('../components/Search.vue') }
+    },
+    {
       path: '/Category/:id*',
       component: () => { return import('../components/Category.vue') }
     },
