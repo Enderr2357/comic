@@ -39,47 +39,7 @@
 </template>
 
 <script setup>
+import '../style/user.css'
 </script>
 
-<style>
-.bg {
-  background-color: #c8c9cc;
-}
-
-.aside {
-  margin-left: 15%;
-  background-color: white;
-}
-
-.mainbox {
-  height: 100%;
-  border-top: 5px solid var(--el-border-color);
-  border-bottom: 5px solid var(--el-border-color);
-}
-
-.title {
-  margin-left: 5%;
-  font-size: x-large;
-}
-
-.empty {
-  height: 20%;
-  width: 20%;
-  margin-left: 38%;
-  margin-bottom: 10%;
-}
-
-.emptytext {
-  margin-left: 39%;
-  color: #73767a;
-}
-
-
-.el-main {
-  --el-main-padding: 0 !important;
-}
-
-.el-menu-item.is-active {
-  color: var(--el-color-warning) !important;
-}
-</style>
+<style scoped></style>

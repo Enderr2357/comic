@@ -50,9 +50,11 @@
 <script setup>
 import axios from 'axios'
 import { ref } from 'vue';
-
+import { useRouter } from 'vue-router';
+const router = useRouter();
 let useraccount = ref('');
 let password = ref('');
+let result = ref({})
 const imgUrl = new URL('../img/注册登录图片.png', import.meta.url).href
 const request = axios.create({
   baseURL: '/api',
@@ -61,7 +63,6 @@ const request = axios.create({
 
 
 const login = () => {
-  console.log(password.value)
   request({
     method: 'POST',
     url: '/login.html',
@@ -69,11 +70,18 @@ const login = () => {
       useraccount: useraccount.value,
       password: password.value
     },
-    data: {
-
-    }
   }).then((res => {
     console.log(res.data)
+    result.value = res.data
+    console.log(result)
+    if (result.value.uId > 0) {
+      alert("登陆成功")
+      localStorage.setItem("login", 1)
+      localStorage.setItem("role", result.value.uRole)
+    }
+    else {
+      alert("账号或密码错误")
+    }
   }))
 }
 </script>

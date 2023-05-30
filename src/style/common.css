@@ -1,0 +1,17 @@
+.el-main {
+  padding: 0 !important;
+}
+
+.el-row {
+  margin-right: 0% !important;
+}
+
+.el-pagination {
+  --el-pagination-button-bg-color: var(--el-color-black) !important;
+  --el-pagination-hover-color: var(--el-color-warning) !important;
+  --el-pagination-button-color: var(--el-color-white) !important;
+}
+
+.el-menu-item.is-active {
+  color: var(--el-color-warning) !important;
+}

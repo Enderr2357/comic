@@ -11,4 +11,9 @@
 <script setup>
 </script>
 
-<style></style>
+<style>
+.emptytext {
+  margin-left: 39%;
+  color: #73767a;
+}
+</style>

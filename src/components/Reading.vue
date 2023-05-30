@@ -6,6 +6,7 @@ import {
 import axios from 'axios';
 import router, { requestUrlParam1 } from '../router';
 import { ref } from 'vue';
+import { max } from 'lodash';
 const imgUrl1 = new URL('../img', import.meta.url).href
 const src = requestUrlParam1()
 const id = src[0]
@@ -62,7 +63,7 @@ request({
     maxpage.value = res.data.maxPage
     currentno.value = res.data.currentNo
 
-    for (var index = 0; index <= maxpage.value; index++) {
+    for (var index = 1; index <= maxpage.value; index++) {
       arr.value.push(index)
     }
   }))
@@ -73,31 +74,36 @@ request({
 
 //下一页
 const next = () => {
-  if (page.value == maxpage.value) {
-    if (currentno.value == bmaxno.value) {
+  if (page.value == maxpage.value - 1) {
+    console.log(maxpage.value)
+    if (currentno.value >= bmaxno.value) {
+
       alert("当前已是最后一话")
+      router.go(-1)
+
     }
-    currentno.value = currentno.value + 1
-    router.replace('/Reading/' + bid.value + '/' + currentno.value)
+    // currentno.value = currentno.value + 1
     page.value = 0
+    currentno.value = currentno.value + 1
+    arr.value = []
+    request({
+      url: '/comicChapter',
+      method: 'GET',
+      params: {
+        bid: bid.value,
+        currentnoid: currentno.value
+      }
+    }).then((res => {
+      console.log(res.data)
+      currentnoname.value = res.data.currentNoName
+      maxpage.value = res.data.maxPage
+      currentno.value = res.data.currentNo
 
-    // request({
-    //   url: '/comicChapter',
-    //   method: 'GET',
-    //   params: {
-    //     bid: bid.value,
-    //     currentnoid: currentno.value
-    //   }
-    // }).then((res => {
-    //   console.log(res.data)
-    //   currentnoname.value = res.data.currentNoName
-    //   maxpage.value = res.data.maxPage
-    //   currentno.value = res.data.currentNo
+      for (var index = 1; index <= maxpage.value; index++) {
+        arr.value.push(index)
+      }
+    }))
 
-    //   for (var index = 0; index <= maxpage.value; index++) {
-    //     arr.value.push(index)
-    //   }
-    // }))
   }
   else { page.value = page.value + 1 }
 
@@ -149,7 +155,7 @@ const TurnTopage = (value) => {
       <template #dropdown>
         <div class="gd">
           <el-dropdown-menu v-for="value in arr" max-height=5 size="small">
-            <el-dropdown-item @click="TurnTopage(value)">{{ value + 1 }}</el-dropdown-item>
+            <el-dropdown-item @click="TurnTopage(value - 1)">{{ value }}</el-dropdown-item>
           </el-dropdown-menu>
         </div>
       </template>
@@ -159,7 +165,7 @@ const TurnTopage = (value) => {
 
 
 
-<style>
+<style scoped>
 .line {
   margin-top: 1%;
   margin-bottom: 2%;
@@ -207,9 +213,5 @@ img {
   background-image: url('../img/主页背景图片二.jpg');
   background-size: 100% 100%;
   background-attachment: fixed;
-}
-
-.el-main {
-  padding: 0 !important;
 }
 </style>

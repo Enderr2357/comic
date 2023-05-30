@@ -116,7 +116,7 @@ const register = () => {
 
 }
 </script>
-<style>
+<style scoped>
 .demo-radius .radius {
   height: 100%;
   width: 45%;

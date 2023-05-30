@@ -138,7 +138,7 @@ request({
 </template>
 
 
-<style>
+<style scoped>
 .bg {
   height: auto;
   background-image: url('../img/主页背景图片二.jpg');
@@ -215,22 +215,12 @@ request({
   color: white;
 }
 
-.el-main {
-  padding: 0 !important;
-}
 
-.el-pagination {
-  --el-pagination-button-bg-color: var(--el-color-black) !important;
-  --el-pagination-hover-color: var(--el-color-warning) !important;
-  --el-pagination-button-color: var(--el-color-white) !important;
-}
+
+
 
 
 .el-menu.el-menu-item.is-active {
   color: darkorange;
 }
-
-/* .el-menu-item.is-active {
-  background-color: darkorange !important;
-} */
 </style>

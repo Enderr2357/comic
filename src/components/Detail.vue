@@ -62,7 +62,7 @@ const read = (bid) => {
     <div class="comicBlock">
       <div class="comicImg">
         <el-image :src="imgUrl + '/' + bsrcname + '.jpg'" style="width: auto; height: auto; max-width: 100%;
-                                        max-height: 100%;" :zoom-rate="1.2"
+                                                                      max-height: 100%;" :zoom-rate="1.2"
           :preview-src-list="[imgUrl + '/' + bsrcname + '.jpg']" :initial-index="1" fit="contain" />
       </div>
       <div class="comicdeCon">
@@ -74,7 +74,7 @@ const read = (bid) => {
         <div class="dashed"></div>
         <p class="comicdetail">{{ binfo }}</p>
         <a :href="'/Reading/' + bid + '/1'">
-          <el-button type="primary" size="large" :icon="Right">开始阅读</el-button>
+          <el-button type="primary" size="large" :icon="Right" class="start">开始阅读</el-button>
         </a>
         <el-button type="warning" size="large" :icon="Star">订阅</el-button>
       </div>
@@ -97,7 +97,11 @@ const read = (bid) => {
   </div>
 </template>
 
-<style>
+<style scoped>
+.start {
+  margin-right: 1%;
+}
+
 .title {
   color: white;
   font-size: x-large;
@@ -128,15 +132,15 @@ const read = (bid) => {
 }
 
 .comicBlock {
-  width: 100%;
+  width: auto;
   display: flex;
   margin-bottom: 2%;
   margin-left: 15%;
 }
 
 .comicdetail {
-  height: 70px;
-  width: 70%;
+  height: 30%;
+  width: 80%;
   color: #b4b3b3;
   font-size: medium;
 }
@@ -152,7 +156,7 @@ const read = (bid) => {
   color: #E6E8EB;
   font-size: medium;
   margin-bottom: 1%;
-
+  width: 70%;
 }
 
 .img {
@@ -168,9 +172,11 @@ const read = (bid) => {
   font-size: 28px;
   color: #E6E8EB;
   margin-bottom: 1%;
+  width: 70%;
 }
 
 .comicdeCon {
+  width: 70%;
   height: auto;
   margin-left: 3%;
 }
@@ -199,10 +205,5 @@ const read = (bid) => {
   width: 80%;
   height: 0;
   border-top: 1px solid var(--el-border-color);
-}
-
-.el-main {
-  overflow: visible !important;
-  padding: 0 !important;
 }
 </style>

@@ -1,3 +1,5 @@
+import { ref, watch } from "vue";
+import { useRoute } from "vue-router";
 import {
   createRouter, createWebHistory
 } from "vue-router";
@@ -9,6 +11,7 @@ const router = createRouter({
       component: () => { return import('../components/MainBody.vue') }
     },
     {
+      name: 'Main',
       path: '/Main',
       component: () => { return import('../components/MainBody.vue') }
     },
@@ -26,9 +29,10 @@ const router = createRouter({
     },
     {
       path: '/Reading/:id*',
-      component: () =>import('../components/Reading.vue') 
+      component: () => import('../components/Reading.vue')
     },
     {
+      name: 'Detail',
       path: '/Detail/:id*',
       component: () => import('../components/Detail.vue')
     },
@@ -74,16 +78,20 @@ const router = createRouter({
     }
   ]
 })
+router.beforeEach((to, from, next) => {
+  console.log(to)
+  next()
+})
 export const requestUrlParam1 = () => {
   console.log("进来")
   var url = location.href
   var arrStr = url.split("/")
   var len = arrStr.length
-  if (len ==5) {
+  if (len == 5) {
     return arrStr[4]
   }
   else if (len == 6) {
-    var list=[arrStr[4],arrStr[5]]
+    var list = [arrStr[4], arrStr[5]]
     return list
   }
   else {
