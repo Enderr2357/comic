@@ -1,12 +1,12 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
-import { requestUrlParam1 } from '../router';
+import router, { requestUrlParam1 } from '../router';
 import { Star, Right } from '@element-plus/icons-vue'
 const imgUrl = new URL('../img/comicimg', import.meta.url).href
 const id = requestUrlParam1();
 console.log(id)
-const chapterinfo=ref([])
+const chapterinfo = ref([])
 const comicinfo = ref([])
 const bid = ref(0)
 const bname = ref('')
@@ -21,50 +21,49 @@ const request1 = axios.create({
   timeout: 10000
 })
 request1({
-    method: 'POST',
-    url: '/comicId',
-    params: {
-        comicid:id
-    }
+  method: 'POST',
+  url: '/comicId',
+  params: {
+    comicid: id
+  }
 }).then((res => {
   console.log(res.data)
-   comicinfo.value.push(res.data)
-   console.log(comicinfo.value)
-    bid.value=comicinfo.value[0].bid
-    bname.value=comicinfo.value[0].bname
-    bmaxno.value=comicinfo.value[0].bmaxno
-    binfo.value=comicinfo.value[0].binfo
-    bsrcname.value=comicinfo.value[0].bsrcname
-    bcategory.value=comicinfo.value[0].bcategory
-    bauthor.value=comicinfo.value[0].bauthor
+  comicinfo.value.push(res.data)
+  console.log(comicinfo.value)
+  bid.value = comicinfo.value[0].bid
+  bname.value = comicinfo.value[0].bname
+  bmaxno.value = comicinfo.value[0].bmaxno
+  binfo.value = comicinfo.value[0].binfo
+  bsrcname.value = comicinfo.value[0].bsrcname
+  bcategory.value = comicinfo.value[0].bcategory
+  bauthor.value = comicinfo.value[0].bauthor
 }))
 console.log(bid.value)
 request1({
-  method:'GET',
-  url:'/comicChapter',
-  params:{
-    id:id
+  method: 'GET',
+  url: '/comicChapter',
+  params: {
+    id: id
   }
-}).then((res=>{
+}).then((res => {
   console.log("下面是章节")
   console.log(res.data)
   res.data.forEach(element => {
     chapterinfo.value.push(element)
   });
 }))
+
+const read = (bid) => {
+  router.push('/Reading/' + bid + '/1')
+}
 </script>
 <template>
   <div class="comicBg">
-  <div class="comicBlock">
-    <div class="comicImg">
-      <el-image :src="imgUrl+'/'+bsrcname+'.jpg'"
-        style="width: auto; height: auto; max-width: 100%;
-              max-height: 100%;"
-        :zoom-rate="1.2"
-        :preview-src-list="[imgUrl + '/' + bsrcname + '.jpg']"
-        :initial-index="1"
-        fit="contain" 
-        />
+    <div class="comicBlock">
+      <div class="comicImg">
+        <el-image :src="imgUrl + '/' + bsrcname + '.jpg'" style="width: auto; height: auto; max-width: 100%;
+                                        max-height: 100%;" :zoom-rate="1.2"
+          :preview-src-list="[imgUrl + '/' + bsrcname + '.jpg']" :initial-index="1" fit="contain" />
       </div>
       <div class="comicdeCon">
         <h1 class="comicTitle">{{ bname }}</h1>
@@ -74,7 +73,9 @@ request1({
         <p class="comicInfo">{{ bmaxno }}</p>
         <div class="dashed"></div>
         <p class="comicdetail">{{ binfo }}</p>
-        <el-button type="primary" size="large" :icon="Right">开始阅读</el-button>
+        <a :href="'/Reading/' + bid + '/1'">
+          <el-button type="primary" size="large" :icon="Right">开始阅读</el-button>
+        </a>
         <el-button type="warning" size="large" :icon="Star">订阅</el-button>
       </div>
     </div>
@@ -83,15 +84,16 @@ request1({
       <el-icon color="orange">
         <List />
       </el-icon>
+      <div class="midline"></div>
       <div class="comicnobody">
         <el-row :gutter="20">
           <el-col :span="6" v-for="item in chapterinfo">
-            <a class="comicChapter" :href="'/Reading/'+bid+'/'+item.currentNo">{{ item.currentNoName }}</a>
+            <a class="comicChapter" :href="'/Reading/' + bid + '/' + item.currentNo">{{ item.currentNoName }}</a>
           </el-col>
         </el-row>
       </div>
-    <div class="line"></div>
-  </div>
+      <div class="line"></div>
+    </div>
   </div>
 </template>
 
@@ -115,6 +117,7 @@ request1({
 .comicno {
   width: 70%;
   padding-top: 1%;
+  padding-bottom: 1%;
   margin-left: 15%;
   box-shadow: 0px 3px 22px #b4b3b3;
 }
@@ -128,6 +131,7 @@ request1({
   width: 100%;
   display: flex;
   margin-bottom: 2%;
+  margin-left: 15%;
 }
 
 .comicdetail {
@@ -148,6 +152,7 @@ request1({
   color: #E6E8EB;
   font-size: medium;
   margin-bottom: 1%;
+
 }
 
 .img {
@@ -156,6 +161,7 @@ request1({
 
 .comicImg {
   box-shadow: -1px 7px 22px #b4b3b3;
+
 }
 
 .comicTitle {
@@ -166,6 +172,7 @@ request1({
 
 .comicdeCon {
   height: auto;
+  margin-left: 3%;
 }
 
 .comicBg {
@@ -173,6 +180,16 @@ request1({
   background-image: url('../img/主页背景图片二.jpg');
   background-size: 100% 100%;
   background-attachment: fixed;
+  padding-top: 1%;
+  padding-bottom: 3%;
+}
+
+.midline {
+  margin-top: 1%;
+  margin-left: 9%;
+  width: 82%;
+  height: 0;
+  border-top: 1px solid var(--el-border-color);
 }
 
 .line {

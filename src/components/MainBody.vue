@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { ref } from 'vue';
 const imgUrl1 = new URL('../img/comicimg', import.meta.url).href
-const categoryinfo=ref([])
+const categoryinfo = ref([])
 const request = axios.create({
   baseURL: '/api',
   timeout: 10000
@@ -51,7 +51,7 @@ request({
     </ul>
     </div>
     <div class="titlemid">热门更新</div><br>
-    <div class="main"> 
+    <div class="main">
       <el-row gutter="20">
         <el-col :span="3" v-for="item in imgInfo">
           <div> <a :href="'/Detail/'+item.bId">
@@ -62,7 +62,7 @@ request({
         </el-col>
       </el-row>
     </div><br>
-    
+
   </div>
 </template>
 

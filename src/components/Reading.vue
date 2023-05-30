@@ -1,16 +1,137 @@
+<script setup>
+import {
+  ArrowLeft,
+  ArrowRight,
+} from '@element-plus/icons-vue'
+import axios from 'axios';
+import router, { requestUrlParam1 } from '../router';
+import { ref } from 'vue';
+const imgUrl1 = new URL('../img', import.meta.url).href
+const src = requestUrlParam1()
+const id = src[0]
+const no = src[1]
+const page = ref(0)
+const bid = ref(0)
+const bname = ref('')
+const bsrcname = ref('')
+const binfo = ref('')
+const bmaxno = ref(0)
+const bcategory = ref('')
+const bauthor = ref(0)
+const bnos = ref([])
+console.log(id, no)
+
+const arr = ref([])
+const maxpage = ref(0)
+const currentnoname = ref('')
+const currentno = ref(0)
+const flag = ref(false)
+const request = axios.create({
+  baseURL: '/api',
+  timeout: 10000
+})
+//获取漫画信息
+request({
+  url: '/comicId',
+  method: 'GET',
+  params: {
+    comicid: id
+  }
+}).then((res => {
+  console.log(res.data)
+  bid.value = res.data.bid
+  bname.value = res.data.bname
+  bsrcname.value = res.data.bsrcname
+  binfo.value = res.data.binfo
+  bmaxno.value = res.data.bmaxno
+  bcategory.value = res.data.bcategory
+  bauthor.value = res.data.bauthor
+  bnos.value = res.data.no
+
+  //获取当前话
+  request({
+    url: '/comicChapter',
+    method: 'GET',
+    params: {
+      bid: bid.value,
+      currentnoid: no
+    }
+  }).then((res => {
+    console.log(res.data)
+    currentnoname.value = res.data.currentNoName
+    maxpage.value = res.data.maxPage
+    currentno.value = res.data.currentNo
+
+    for (var index = 0; index <= maxpage.value; index++) {
+      arr.value.push(index)
+    }
+  }))
+}))
+
+
+
+
+//下一页
+const next = () => {
+  if (page.value == maxpage.value) {
+    if (currentno.value == bmaxno.value) {
+      alert("当前已是最后一话")
+    }
+    currentno.value = currentno.value + 1
+    router.replace('/Reading/' + bid.value + '/' + currentno.value)
+    page.value = 0
+
+    // request({
+    //   url: '/comicChapter',
+    //   method: 'GET',
+    //   params: {
+    //     bid: bid.value,
+    //     currentnoid: currentno.value
+    //   }
+    // }).then((res => {
+    //   console.log(res.data)
+    //   currentnoname.value = res.data.currentNoName
+    //   maxpage.value = res.data.maxPage
+    //   currentno.value = res.data.currentNo
+
+    //   for (var index = 0; index <= maxpage.value; index++) {
+    //     arr.value.push(index)
+    //   }
+    // }))
+  }
+  else { page.value = page.value + 1 }
+
+  //上一页
+}
+const previous = () => {
+  if (page.value <= 0) {
+    alert("当前已是第一页")
+  }
+  else {
+    page.value = page.value - 1
+  }
+
+
+}
+const TurnTopage = (value) => {
+  console.log(value)
+  page.value = value
+}
+</script>
 <template>
   <div class="bg">
     <div class="smallhead">
       <span>您当前位置：</span>
-      <a href="/Detail">镖人</a>
-      <span>>第一话</span>
+      <a :href="'/Detail/' + bid">{{ bname }}</a>
+      <span>>{{ currentnoname }}</span>
     </div>
     <div>
-      <span class="title">《镖人》- 第一话</span>
+      <span class="title">《{{ bname }}》- {{ currentnoname }}</span>
     </div>
     <div class="line"></div>
     <div class="img">
-      <img :src="imgUrl1+'/'+bsrcname+'/'+no+'/'+page+'.jpg'" alt="" style="height: 1500px;width: 1000px;">
+      <img :src="imgUrl1 + '/' + bsrcname + '/' + currentno + '/' + page + '.jpg'" alt=""
+        style="height: 1500px;width: 1000px;">
     </div>
 
     <el-button-group class="button">
@@ -26,61 +147,17 @@
         跳页<el-icon class="el-icon--right"><arrow-down /></el-icon>
       </el-button>
       <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item>1</el-dropdown-item>
-          <el-dropdown-item>2</el-dropdown-item>
-          <el-dropdown-item>3</el-dropdown-item>
-          <el-dropdown-item>4</el-dropdown-item>
-          <el-dropdown-item>5</el-dropdown-item>
-        </el-dropdown-menu>
+        <div class="gd">
+          <el-dropdown-menu v-for="value in arr" max-height=5 size="small">
+            <el-dropdown-item @click="TurnTopage(value)">{{ value + 1 }}</el-dropdown-item>
+          </el-dropdown-menu>
+        </div>
       </template>
     </el-dropdown>
   </div>
 </template>
 
-<script setup>
-import {
-  ArrowLeft,
-  ArrowRight,
-} from '@element-plus/icons-vue'
-import axios from 'axios';
-import { requestUrlParam1 } from '../router';
-import { ref } from 'vue';
-const imgUrl1 = new URL('../img', import.meta.url).href
-const src = requestUrlParam1()
-const id = src[0]
-const no = src[1]
-const page=ref(0)
-const bid = ref(0)
-const bname = ref('')
-const bsrcname = ref('')
-const binfo = ref('')
-const bmaxno = ref(0)
-const bcategory = ref('')
-const bauthor = ref(0)
-const bnos = ref([])
-axios({
-  url: 'http://localhost:3000/comic',
-  method: 'GET',
-  params: {
-    bid: id
-  }
-}).then((res => {
-  console.log(res.data)
-  bid.value = res.data[0].bid
-  bname.value = res.data[0].bname
-  bsrcname.value = res.data[0].bsrcname
-  binfo.value = res.data[0].binfo
-  bmaxno.value = res.data[0].bmaxno
-  bcategory.value = res.data[0].bcategory
-  bauthor.value = res.data[0].bauthor
-  bnos.value = res.data[0].no
-  
-}))
-const next = () => {
-  page.value=page.value+1
-}
-</script>
+
 
 <style>
 .line {
@@ -92,10 +169,21 @@ const next = () => {
   border-top: 1px solid var(--el-border-color);
 }
 
+.gd {
+  overflow-y: scroll;
+  height: 200px;
+}
+
 .smallhead {
   padding-top: 2%;
   margin-left: 4%;
   color: white;
+}
+
+.el-dropdown-item {
+  overflow: scroll;
+  max-height: 200px;
+  overflow-x: hidden;
 }
 
 .title {
