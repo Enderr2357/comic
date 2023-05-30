@@ -53,12 +53,15 @@ const turntoAdmin = () => {
         <el-link v-if="role == 0 && login == 1" class='link' type="warning" @click="turntoUser">个人中心</el-link>
         <el-link v-if="role == 1 && login == 1" class='link' type="warning" @click="turntoAdmin">管理员</el-link>
       </div>
-      <input v-model="search" class="radius" :style="{
+      <div class="search">
+        <input v-model="search" class="radius" :style="{
         borderRadius: 'round'
           ? `var(--el-border-radius-round)`
           : '',
-      }" type="text" placeholder="搜索漫画">
-
+        }" type="text" placeholder="搜索漫画">
+        <el-button :icon="Search" circle class="sbutton" @click="bsearch()"/>
+      </div>
+      
 
       <div class="HeadTitleRt">
         <v-if>
@@ -70,7 +73,17 @@ const turntoAdmin = () => {
     </div>
   </div>
 </template>
+<script setup>
+import {
+  Search
+} from '@element-plus/icons-vue'
+import {  useRouter } from 'vue-router';
+const router = useRouter();
+const bsearch = () => {
+ router.push('/Search')
+}
 
+</script>
 <style>
 .HeadTitle {
   display: flex;
@@ -81,6 +94,23 @@ const turntoAdmin = () => {
   /* box-shadow: '--el-box-shadow-dark' */
 }
 
+.search{
+  padding-top: 1%;
+  position: relative;
+}
+
+.sbutton{
+  border: none;
+  outline: none;
+  position: absolute;
+  right: 0;
+}
+
+.el-button{
+  --el-button-hover-bg-color:vue;
+  --el-button-hover-text-color:darkorange;
+}
+
 .demo-radius {
   margin-top: 1%;
   height: 50px;
@@ -88,6 +118,7 @@ const turntoAdmin = () => {
 
 .radius {
   height: 30px;
+  width: 100%;
   border: 2px solid var(--el-border-color);
   border-radius: 0;
   line-height: 30px;
