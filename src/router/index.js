@@ -54,7 +54,21 @@ const router = createRouter({
         },
         {
           path: 'Settings',
-          component: () => import('../components/Settings.vue')
+          component: () => import('../components/Settings.vue'),
+          children: [
+            {
+              path: '',
+              component: () => import('../components/Info.vue')
+            },
+            {
+              path: 'Info',
+              component: () => import('../components/Info.vue')
+            },
+            {
+              path: 'Update',
+              component: () => import('../components/Update.vue')
+            },
+          ]
         },
       ]
     },
