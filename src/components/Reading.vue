@@ -3,10 +3,10 @@ import {
   ArrowLeft,
   ArrowRight,
 } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router';
 import axios from 'axios';
 import router, { requestUrlParam1 } from '../router';
-import { ref } from 'vue';
-import { max } from 'lodash';
+import { ref, watch } from 'vue';
 const imgUrl1 = new URL('../img', import.meta.url).href
 const src = requestUrlParam1()
 const id = src[0]
@@ -21,7 +21,6 @@ const bcategory = ref('')
 const bauthor = ref(0)
 const bnos = ref([])
 console.log(id, no)
-
 const arr = ref([])
 const maxpage = ref(0)
 const currentnoname = ref('')
@@ -69,9 +68,6 @@ request({
   }))
 }))
 
-
-
-
 //下一页
 const next = () => {
   if (page.value == maxpage.value - 1) {
@@ -86,27 +82,31 @@ const next = () => {
     page.value = 0
     currentno.value = currentno.value + 1
     arr.value = []
-    request({
-      url: '/comicChapter',
-      method: 'GET',
-      params: {
-        bid: bid.value,
-        currentnoid: currentno.value
-      }
-    }).then((res => {
-      console.log(res.data)
-      currentnoname.value = res.data.currentNoName
-      maxpage.value = res.data.maxPage
-      currentno.value = res.data.currentNo
+    router.push("/Reading/"+bid.value+"/"+currentno.value)
+    
+    // request({
+    //   url: '/comicChapter',
+    //   method: 'GET',
+    //   params: {
+    //     bid: bid.value,
+    //     currentnoid: currentno.value
+    //   }
+    // }).then((res => {
+    //   console.log(res.data)
+    //   currentnoname.value = res.data.currentNoName
+    //   maxpage.value = res.data.maxPage
+    //   currentno.value = res.data.currentNo
 
-      for (var index = 1; index <= maxpage.value; index++) {
-        arr.value.push(index)
-      }
-    }))
+    //   for (var index = 1; index <= maxpage.value; index++) {
+    //     arr.value.push(index)
+    //   }
+    // }))
 
   }
   else { page.value = page.value + 1 }
-
+  watch(currentnoname,(newValue)=>{
+    console.log(newValue)
+  })
   //上一页
 }
 const previous = () => {

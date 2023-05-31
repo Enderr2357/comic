@@ -107,6 +107,14 @@ const register = () => {
       }
     }).then((res => {
       console.log(res.data)
+      if(res.data==1){
+      alert("注册成功")
+      localStorage.setItem("login", 1)
+      localStorage.setItem("role", 0)
+      }
+      else if(res.data==0){
+        alert("用户名重复")
+      }
     }))
   }
   else if (password.value == "" || passwordConfirm.value == "") {

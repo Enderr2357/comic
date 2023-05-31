@@ -78,6 +78,7 @@ const login = () => {
       alert("登陆成功")
       localStorage.setItem("login", 1)
       localStorage.setItem("role", result.value.uRole)
+      localStorage.setItem("User",result.value.uId)
     }
     else {
       alert("账号或密码错误")

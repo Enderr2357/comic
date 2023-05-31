@@ -4,10 +4,12 @@ import { create } from 'lodash';
 import { watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
-
 import {
   Search
 } from '@element-plus/icons-vue'
+const bsearch = () => {
+ router.push('/Search')
+}
 const role = ref(0)
 const login = ref(0)
 const router = useRouter();
