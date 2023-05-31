@@ -2,7 +2,7 @@
   background-color: #c8c9cc;
 }
 
-.aside {
+.asideu {
   margin-left: 15%;
   background-color: white;
 }
@@ -13,7 +13,7 @@
   border-bottom: 5px solid var(--el-border-color);
 }
 
-.title {
+.titleu {
   margin-left: 5%;
   font-size: x-large;
 }

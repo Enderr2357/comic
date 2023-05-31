@@ -53,10 +53,6 @@ const router = createRouter({
           component: () => import('../components/Subscribe.vue')
         },
         {
-          path: 'History',
-          component: () => import('../components/History.vue')
-        },
-        {
           path: 'Settings',
           component: () => import('../components/Settings.vue')
         },

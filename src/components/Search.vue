@@ -1,5 +1,5 @@
 <script setup>
-const message='???'    
+const message = '???'    
 </script>
 
 <template>
@@ -27,40 +27,40 @@ const message='???'
     </el-row>
 
     <el-row>
-        <el-col :span="4">
-          <img src="../img/comicimg/biaoren.jpg" alt="">
-          <p>镖人</p>
-        </el-col>
-        <el-col :span="4">
-          <img src="../img/comicimg/biaoren.jpg" alt="">
-          <p>镖人</p>
-        </el-col>
-        <el-col :span="4">
-          <img src="../img/comicimg/biaoren.jpg" alt="">
-          <p>镖人</p>
-        </el-col>
-        <el-col :span="4">
-          <img src="../img/comicimg/biaoren.jpg" alt="">
-          <p>镖人</p>
-        </el-col>
-      </el-row>
+      <el-col :span="4">
+        <img src="../img/comicimg/biaoren.jpg" alt="">
+        <p>镖人</p>
+      </el-col>
+      <el-col :span="4">
+        <img src="../img/comicimg/biaoren.jpg" alt="">
+        <p>镖人</p>
+      </el-col>
+      <el-col :span="4">
+        <img src="../img/comicimg/biaoren.jpg" alt="">
+        <p>镖人</p>
+      </el-col>
+      <el-col :span="4">
+        <img src="../img/comicimg/biaoren.jpg" alt="">
+        <p>镖人</p>
+      </el-col>
+    </el-row>
 
-      <div class="line"></div>
+    <div class="line"></div>
   </div>
 </template>
 
-<style>
-.el-row{
+<style scoped>
+.el-row {
   margin-top: 2%;
   margin-left: 18%;
   color: white;
 }
 
-.el-col{
+.el-col {
   margin-left: 2%;
 }
 
-.title{
+.title {
   color: white;
   font-size: x-large;
 }
@@ -81,6 +81,7 @@ const message='???'
   padding-bottom: 5%;
   padding-top: 1%;
 }
+
 .el-main {
   padding: 0 !important;
 }

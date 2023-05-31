@@ -31,26 +31,7 @@
 </template>
   
 <script setup>
+import '../style/admin.css'
 </script>
   
-<style scoped>
-.bg {
-  background-color: #c8c9cc;
-}
-
-.aside {
-  margin-left: 15%;
-  background-color: white;
-}
-
-.mainbox {
-  height: 100%;
-  border-top: 5px solid var(--el-border-color);
-  border-bottom: 5px solid var(--el-border-color);
-}
-
-.title {
-  margin-left: 5%;
-  font-size: x-large;
-}
-</style>
+<style scoped></style>

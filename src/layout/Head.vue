@@ -4,9 +4,16 @@ import { create } from 'lodash';
 import { watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
+
+import {
+  Search
+} from '@element-plus/icons-vue'
 const role = ref(0)
 const login = ref(0)
 const router = useRouter();
+const bsearch = () => {
+  router.push('/Search')
+}
 window.addEventListener('setItemEvent', function (e) {
   if (e.key == "role") {
     const newdata = e.newValue
@@ -55,13 +62,13 @@ const turntoAdmin = () => {
       </div>
       <div class="search">
         <input v-model="search" class="radius" :style="{
-        borderRadius: 'round'
-          ? `var(--el-border-radius-round)`
-          : '',
+          borderRadius: 'round'
+            ? `var(--el-border-radius-round)`
+            : '',
         }" type="text" placeholder="搜索漫画">
-        <el-button :icon="Search" circle class="sbutton" @click="bsearch()"/>
+        <el-button :icon="Search" circle class="sbutton" @click="bsearch()" />
       </div>
-      
+
 
       <div class="HeadTitleRt">
         <v-if>
@@ -73,17 +80,6 @@ const turntoAdmin = () => {
     </div>
   </div>
 </template>
-<script setup>
-import {
-  Search
-} from '@element-plus/icons-vue'
-import {  useRouter } from 'vue-router';
-const router = useRouter();
-const bsearch = () => {
- router.push('/Search')
-}
-
-</script>
 <style>
 .HeadTitle {
   display: flex;
@@ -94,21 +90,21 @@ const bsearch = () => {
   /* box-shadow: '--el-box-shadow-dark' */
 }
 
-.search{
+.search {
   padding-top: 1%;
   position: relative;
 }
 
-.sbutton{
+.sbutton {
   border: none;
   outline: none;
   position: absolute;
   right: 0;
 }
 
-.el-button{
-  --el-button-hover-bg-color:vue;
-  --el-button-hover-text-color:darkorange;
+.el-button {
+  --el-button-hover-bg-color: vue;
+  --el-button-hover-text-color: darkorange;
 }
 
 .demo-radius {

@@ -83,8 +83,8 @@ request({
   <div class="bg">
     <el-container>
 
-      <el-aside width="15%" class="aside">
-        <span class="title">漫画分类 </span>
+      <el-aside width="15%" class="asidec">
+        <span class="titlec">漫画分类 </span>
         <span class="top">Type</span>
         <el-row>
           <el-col :span="16">
@@ -108,7 +108,7 @@ request({
       </el-aside>
 
       <el-main class="main">
-        <span class="title">{{ message }} 漫画 </span>
+        <span class="titlec">{{ message }} 漫画 </span>
         <el-icon color="orange" size="20px">
           <Histogram />
         </el-icon>
@@ -198,12 +198,13 @@ request({
   color: white;
 }
 
-.aside {
+.asidec {
   margin-left: 15%;
   padding-top: 1%;
+  background-color: none;
 }
 
-.title {
+.titlec {
   font-size: 25px;
   color: white;
 }

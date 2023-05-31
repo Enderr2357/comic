@@ -1,7 +1,7 @@
 <template>
   <div class="bg">
     <el-container>
-      <el-aside class="aside">
+      <el-aside class="asideu">
         <el-menu>
           <router-link to="/User/Subscribe">
             <el-menu-item index="1">
@@ -11,16 +11,8 @@
               <p>我的订阅</p>
             </el-menu-item>
           </router-link>
-          <router-link to="/User/History">
-            <el-menu-item index="2">
-              <el-icon>
-                <Clock />
-              </el-icon>
-              <a>浏览历史</a>
-            </el-menu-item>
-          </router-link>
           <router-link to="/User/Settings">
-            <el-menu-item index="3">
+            <el-menu-item index="2">
               <el-icon>
                 <setting />
               </el-icon>
