@@ -2,9 +2,10 @@
 import axios from 'axios';
 import { ref, watch } from 'vue';
 import { requestUrlParam1 } from '../router';
-import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 const imgUrl1 = new URL('../img/comicimg', import.meta.url).href
 const categoryinfo = ref([])
+const router=useRouter();
 const request = axios.create({
   baseURL: '/api',
   timeout: 10000
@@ -16,11 +17,6 @@ request({
   params: {
     comicname: 'all'
   }
-  // axios({
-  //   method: 'GET',
-  //   url: 'http://localhost:3000/comic',
-  //   data: {    
-  //   }
 }).then((res => {
   console.log(res.data)
   for (let index = 0; index < res.data.length; index++) {
@@ -29,7 +25,12 @@ request({
   }
   console.log(imgInfo.value[0].bAuthor)
 }))
-
+const turncate=(cateId)=>{
+  router.push('/Category/'+cateId)
+}
+const turnDetail=(bId)=>{
+  router.push('/Detail/'+bId)
+}
 request({
   method: 'GET',
   url: '/comiccategory',
@@ -49,7 +50,7 @@ request({
     <div class="titlebig">欢迎使用漫画网站</div><br>
     <div style="display:inline-flex;margin-left: 33%;">
       <ul v-for="value in categoryinfo">
-        <li><el-link type="info" style="margin-left: 10px;" :href="'/Category/' + value.cateId">{{ value.cateName
+        <li><el-link type="info" style="margin-left: 10px;" @click="turncate(value.cateId)">{{ value.cateName
         }}</el-link>
         </li>
       </ul>
@@ -58,10 +59,9 @@ request({
     <div class="main">
       <el-row gutter="20">
         <el-col :span="3" v-for="item in imgInfo">
-          <div> <a :href="'/Detail/' + item.bId">
-              <el-image :src="imgUrl1 + '/' + item.bSrcname + '.jpg'"></el-image>
+          <div @click="turnDetail(item.bId)" class="img"> 
+              <el-image :src="imgUrl1 + '/' + item.bSrcname + '.jpg'" ></el-image>
               <div class="titlesmall">{{ item.bName }}</div>
-            </a>
           </div>
         </el-col>
       </el-row>
@@ -106,7 +106,9 @@ li {
   color: white;
   font-size: 20px;
 }
-
+.img :hover{
+  cursor: pointer ;
+}
 .main {
   margin-left: 20%;
 }

@@ -94,6 +94,8 @@ const router = createRouter({
 })
 router.beforeEach((to, from, next) => {
   console.log(to)
+  const i=localStorage.getItem('login')
+  console.log(localStorage.getItem("login"))
   next()
 })
 export const requestUrlParam1 = () => {

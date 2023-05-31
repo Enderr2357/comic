@@ -74,11 +74,11 @@ const login = () => {
     console.log(res.data)
     result.value = res.data
     console.log(result)
-    if (result.value.uId > 0) {
+    if (result.value.uid > 0) {
       alert("登陆成功")
       localStorage.setItem("login", 1)
-      localStorage.setItem("role", result.value.uRole)
-      localStorage.setItem("User",result.value.uId)
+      localStorage.setItem("role", result.value.urole)
+      localStorage.setItem("User",result.value.uid)
     }
     else {
       alert("账号或密码错误")

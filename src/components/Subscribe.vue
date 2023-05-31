@@ -35,18 +35,19 @@ request({
         <a :href="'/Detail/'+item.bId">
         <img :src="imgUrl+'/'+item.bSrcname+'.jpg'" alt="">
       
-        <p>镖人</p>
+        <p>{{item.bName}}</p>
       </a>
       </el-col>
     </el-row>
   </div>
+</div>
 </template>
 
 
 <style scoped>
 .body {
   margin-top: 2%;
-  margin-left: 15%;
+  margin-left: 10%;
 }
 
 .row {

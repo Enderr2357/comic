@@ -7,7 +7,7 @@
       <el-table-column prop="password" label="密码" width="130" />
       <el-table-column fixed="right" label="操作" width="120">
         <template #default="scope">
-          <el-button link type="primary" size="small" @click.prevent="deleteRow(scope.$index)">
+          <el-button link type="primary" size="small" @click.prevent="deleteRow(scope.row.id)">
             删除
           </el-button>
         </template>
@@ -22,19 +22,19 @@
     <el-dialog v-model="dialogFormVisible" title="添加用户">
       <el-form :model="form">
         <el-form-item label="用户名" :label-width="formLabelWidth">
-          <el-input />
+          <el-input v-model="form.username" />
         </el-form-item>
         <el-form-item label="账号" :label-width="formLabelWidth">
-          <el-input />
+          <el-input v-model="form.account" />
         </el-form-item>
         <el-form-item label="密码" :label-width="formLabelWidth">
-          <el-input />
+          <el-input v-model="form.password" />
         </el-form-item>
       </el-form>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取消</el-button>
-          <el-button @click="dialogFormVisible = false">添加</el-button>
+          <el-button @click="addUser()">添加</el-button>
         </span>
       </template>
     </el-dialog>
@@ -44,51 +44,59 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
+import axios from 'axios';
+import { ElMessage } from 'element-plus';
+const request = axios.create({
+  baseURL: '/api',
+  timeout: 10000
+})
 
-const table = ref([
-  {
-    username: '杰斯',
-    account: '10000',
-    password: 'haha123',
-  },
-  {
-    username: '奎桑提',
-    account: '10001',
-    password: 'huhu111',
-  },
-  {
-    username: '兰博',
-    account: '10086',
-    password: 'xixi233',
-  },
-])
 
-const deleteRow = (index: number) => {
-  table.value.splice(index, 1)
-}
+const table = ref()
 
-const onAddItem = () => {
-  table.value.push({
-    username: '杰斯',
-    account: '10086',
-    password: 'haha123',
+const getDataList=()=>{
+  request.get("/getUser").then(res=>{
+  table.value=res.data
   })
 }
+
+getDataList()
+
+const deleteRow = (id: string) => {
+  const params=new URLSearchParams()
+  params.append("id",id)
+  request.post("/DeleteUser",params).then(res=>{
+    console.log(res.data)
+    ElMessage({
+            showClose: true,
+            message: '用户删除成功',
+            type: 'success',})
+    getDataList()
+  })
+}
+const form = reactive({
+  id:'',
+  username:'',
+  account:'',
+  password:''
+})
 
 const dialogFormVisible = ref(false)
 const formLabelWidth = '15%'
 
-const form = reactive({
-  name: '',
-  region: '',
-  date1: '',
-  date2: '',
-  delivery: false,
-  type: [],
-  resource: '',
-  desc: '',
+const addUser=()=>{
+  dialogFormVisible.value = false
+  request.post("/AddUser",form).then(res=>{
+  console.log(res.data)
+  ElMessage({
+            showClose: true,
+            message: '用户增加成功',
+            type: 'success',})
+  getDataList()
 })
 
+}
+//增加用户
 
 </script>
 

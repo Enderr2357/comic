@@ -13,9 +13,7 @@ const bsearch = () => {
 const role = ref(0)
 const login = ref(0)
 const router = useRouter();
-const bsearch = () => {
-  router.push('/Search')
-}
+
 window.addEventListener('setItemEvent', function (e) {
   if (e.key == "role") {
     const newdata = e.newValue
@@ -73,11 +71,9 @@ const turntoAdmin = () => {
 
 
       <div class="HeadTitleRt">
-        <v-if>
-          <el-link v-if="login == 0" class='link' type="warning" href="/Login">登录</el-link>
-          <el-link v-if="login == 0" class='link' type="warning" href="/Register">注册</el-link>
-          <el-link v-if="login == 1" class='link' type="warning" @click="exit()">退出</el-link>
-        </v-if>
+          <el-link v-show="login == 0" class='link' type="warning" href="/Login">登录</el-link>
+          <el-link v-show="login == 0" class='link' type="warning" href="/Register">注册</el-link>
+          <el-link v-show="login == 1" class='link' type="warning" @click="exit()">退出</el-link>
       </div>
     </div>
   </div>

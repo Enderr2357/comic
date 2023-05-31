@@ -5,10 +5,11 @@ import {
 } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router';
 import axios from 'axios';
-import router, { requestUrlParam1 } from '../router';
+import { requestUrlParam1 } from '../router';
 import { ref, watch } from 'vue';
 const imgUrl1 = new URL('../img', import.meta.url).href
 const src = requestUrlParam1()
+const router=useRouter();
 const id = src[0]
 const no = src[1]
 const page = ref(0)
@@ -75,38 +76,41 @@ const next = () => {
     if (currentno.value >= bmaxno.value) {
 
       alert("当前已是最后一话")
-      router.go(-1)
-
+      router.push("/Detail/"+bid.value)
+      console.log(bid.value)
+      return
     }
     // currentno.value = currentno.value + 1
     page.value = 0
     currentno.value = currentno.value + 1
-    arr.value = []
     router.push("/Reading/"+bid.value+"/"+currentno.value)
-    
-    // request({
-    //   url: '/comicChapter',
-    //   method: 'GET',
-    //   params: {
-    //     bid: bid.value,
-    //     currentnoid: currentno.value
-    //   }
-    // }).then((res => {
-    //   console.log(res.data)
-    //   currentnoname.value = res.data.currentNoName
-    //   maxpage.value = res.data.maxPage
-    //   currentno.value = res.data.currentNo
 
-    //   for (var index = 1; index <= maxpage.value; index++) {
-    //     arr.value.push(index)
-    //   }
-    // }))
+    request({
+      url: '/comicChapter',
+      method: 'GET',
+      params: {
+        bid: bid.value,
+        currentnoid: currentno.value
+      }
+    }).then((res => {
+      console.log(res.data)
+      // if(res.data==null){
+      //   router.push("/Detail/"+bid.value)
+      // }
+      arr.value=[]
+      currentnoname.value = res.data.currentNoName
+      maxpage.value = res.data.maxPage
+      currentno.value = res.data.currentNo
+      
+      for (var index = 1; index <= maxpage.value; index++) {
+        arr.value.push(index)
+      }
+    }))
 
   }
-  else { page.value = page.value + 1 }
-  watch(currentnoname,(newValue)=>{
-    console.log(newValue)
-  })
+  else{
+    page.value=page.value+1  
+  }
   //上一页
 }
 const previous = () => {
@@ -119,6 +123,9 @@ const previous = () => {
 
 
 }
+const turnDetail=()=>{
+  router.push("/Detail/"+bid.value)
+}
 const TurnTopage = (value) => {
   console.log(value)
   page.value = value
@@ -128,7 +135,7 @@ const TurnTopage = (value) => {
   <div class="bg">
     <div class="smallhead">
       <span>您当前位置：</span>
-      <a :href="'/Detail/' + bid">{{ bname }}</a>
+      <el-link :underline="false" style="font-size: 18px; color:white;" @click="turnDetail">{{ bname }}</el-link>
       <span>>{{ currentnoname }}</span>
     </div>
     <div>

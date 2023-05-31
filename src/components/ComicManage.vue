@@ -2,12 +2,12 @@
   <div class="mainbox">
     <span class="titlea">漫画管理</span>
     <el-table :data="table" style="width: 100%" max-height="250">
-      <el-table-column prop="comicname" label="漫画名" width="150" />
+      <el-table-column prop="name" label="漫画名" width="150" />
       <el-table-column prop="category" label="类别" width="120" />
       <el-table-column prop="author" label="作者" width="120" />
       <el-table-column fixed="right" label="操作" width="120">
         <template #default="scope">
-          <el-button link type="primary" size="small" @click.prevent="deleteRow(scope.$index)">
+          <el-button link type="primary" size="small" @click.prevent="deleteRow(scope.row.id)">
             删除
           </el-button>
         </template>
@@ -22,19 +22,19 @@
     <el-dialog v-model="dialogFormVisible" title="添加漫画">
       <el-form :model="form">
         <el-form-item label="漫画名" :label-width="formLabelWidth">
-          <el-input />
+          <el-input v-model="form.name"/>
         </el-form-item>
         <el-form-item label="作者" :label-width="formLabelWidth">
-          <el-input />
+          <el-input v-model="form.author"/>
         </el-form-item>
         <el-form-item label="类别" :label-width="formLabelWidth">
-          <el-input />
+          <el-input v-model="form.category" />
         </el-form-item>
       </el-form>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取消</el-button>
-          <el-button @click="dialogFormVisible = false">添加</el-button>
+          <el-button @click="addComic()">添加</el-button>
         </span>
       </template>
     </el-dialog>
@@ -44,50 +44,64 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
+import axios from 'axios';
 
-const table = ref([
-  {
-    comicname: '镖人',
-    category: '国漫',
-    author: '新漫画',
-  },
-  {
-    comicname: '百诡谈',
-    category: '国漫',
-    author: '完美世界漫画',
-  },
-  {
-    comicname: '刺客信条：王朝',
-    category: '武侠',
-    author: '育碧Ubisoft',
-  },
-])
-
-const deleteRow = (index: number) => {
-  table.value.splice(index, 1)
-}
-
-const AddItem = () => {
-  table.value.push({
-    comicname: '镖人',
-    category: '国漫',
-    author: '新漫画',
+import { ElMessage } from 'element-plus'
+const request = axios.create({
+  baseURL: '/api',
+  timeout: 10000
+})
+const table = ref()
+const form = reactive({
+  id:'',
+  name:'',
+  author:'',
+  category:''
+})
+const getDataList=()=>{
+  request.get("/GetComic").then(res=>{
+    console.log(res.data)
+    table.value=res.data
   })
 }
+getDataList()
 
+
+const deleteRow = (id: string) => {
+  const params=new URLSearchParams()
+  params.append("id",id)
+  request.post("/DeleteComic",params).then(res=>{
+    console.log(res.data)
+    if(res.data==1){
+    ElMessage({
+            showClose: true,
+            message: '漫画删除成功',
+            type: 'success',})
+    getDataList()
+  }
+  })
+}
 const dialogFormVisible = ref(false)
 const formLabelWidth = '15%'
+const addComic=()=>{
+  dialogFormVisible.value = false
+  const params=new URLSearchParams()
 
-const form = reactive({
-  name: '',
-  region: '',
-  date1: '',
-  date2: '',
-  delivery: false,
-  type: [],
-  resource: '',
-  desc: '',
-})
+  var author=encodeURIComponent(form.author)
+  var name=encodeURIComponent(form.name)
+  var category=encodeURIComponent(form.category)
+  params.append("author",author)
+  params.append("name",name)
+  params.append("category",category)
+  request.post("/AddComic",params).then(res=>{
+    console.log(res.data)
+            ElMessage({
+            showClose: true,
+            message: '漫画添加成功',
+            type: 'success',})
+    getDataList();
+  })
+}
 </script>
 
 <style scoped>
