@@ -1,47 +1,61 @@
 <script setup>
-const message = '???'    
+import { requestUrlParam1 } from '../router';
+import { reactive, ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
+import axios from 'axios';
+const router = useRouter();
+const imgUrl1 = new URL('../img/comicimg', import.meta.url).href
+const request = axios.create({
+  baseURL: '/api',
+  timeout: 10000
+})
+const search = decodeURIComponent(requestUrlParam1());
+console.log(search)
+const searchlist = reactive({
+  name: '',
+})
+// window.addEventListener('setItemEvent', function (e) {
+//   if (e.key = "search") {
+//     console.log("search改变" + decodeURIComponent(e.newValue))
+//     let str = decodeURIComponent(e.newValue)
+//     searchlist.name = str
+//     getDataList()
+//   }
+// })
+watch(search, async (newValue) => {
+  console.log(newValue)
+})
+const comiclist = ref()
+const getDataList = () => {
+  searchlist.name = search
+  comiclist.value = []
+  const params = new URLSearchParams()
+  var name1 = encodeURIComponent(searchlist.name)
+  params.append("name", name1)
+  request.post("/GetSearch", params).then(res => {
+    comiclist.value = res.data
+    console.log(comiclist.value[0].bName)
+  })
+}
+
+getDataList()
+const turntoDetail = (bId) => {
+  router.push("/Detail/" + bId)
+}
+
 </script>
 
 <template>
-  <div class="bg">
-    <center><span class="title">与{{ message }}相关的漫画</span></center>
+  <div class="bg" v-if="comiclist != null">
+    <center><span class="title">与{{ search }}相关的漫画</span></center>
     <div class="line"></div>
 
     <el-row>
-      <el-col :span="4">
-        <img src="../img/comicimg/biaoren.jpg" alt="">
-        <p>镖人</p>
-      </el-col>
-      <el-col :span="4">
-        <img src="../img/comicimg/biaoren.jpg" alt="">
-        <p>镖人</p>
-      </el-col>
-      <el-col :span="4">
-        <img src="../img/comicimg/biaoren.jpg" alt="">
-        <p>镖人</p>
-      </el-col>
-      <el-col :span="4">
-        <img src="../img/comicimg/biaoren.jpg" alt="">
-        <p>镖人</p>
-      </el-col>
-    </el-row>
-
-    <el-row>
-      <el-col :span="4">
-        <img src="../img/comicimg/biaoren.jpg" alt="">
-        <p>镖人</p>
-      </el-col>
-      <el-col :span="4">
-        <img src="../img/comicimg/biaoren.jpg" alt="">
-        <p>镖人</p>
-      </el-col>
-      <el-col :span="4">
-        <img src="../img/comicimg/biaoren.jpg" alt="">
-        <p>镖人</p>
-      </el-col>
-      <el-col :span="4">
-        <img src="../img/comicimg/biaoren.jpg" alt="">
-        <p>镖人</p>
+      <el-col :span="4" v-for="item in comiclist">
+        <div class="detail" @click="turntoDetail(item.bId)">
+          <img :src="imgUrl1 + '/' + item.bSrcname + '.jpg'" alt="">
+          <p>{{ item.bName }}</p>
+        </div>
       </el-col>
     </el-row>
 
@@ -63,6 +77,10 @@ const message = '???'
 .title {
   color: white;
   font-size: x-large;
+}
+
+.detail:hover {
+  cursor: pointer;
 }
 
 .line {

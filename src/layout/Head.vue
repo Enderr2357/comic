@@ -7,8 +7,15 @@ import { ref } from 'vue';
 import {
   Search
 } from '@element-plus/icons-vue'
+const search1 = ref('')
+
+console.log(search1)
 const bsearch = () => {
- router.push('/Search')
+  const searchvalue = encodeURIComponent(search1.value)
+  router.push("/Search/" + searchvalue)
+  localStorage.setItem("search", searchvalue)
+  console.log(search1)
+
 }
 const role = ref(0)
 const login = ref(0)
@@ -61,19 +68,19 @@ const turntoAdmin = () => {
         <el-link v-if="role == 1 && login == 1" class='link' type="warning" @click="turntoAdmin">管理员</el-link>
       </div>
       <div class="search">
-        <input v-model="search" class="radius" :style="{
+        <input v-model="search1" class="radius" :style="{
           borderRadius: 'round'
             ? `var(--el-border-radius-round)`
             : '',
         }" type="text" placeholder="搜索漫画">
-        <el-button :icon="Search" circle class="sbutton" @click="bsearch()" />
+        <el-button :icon="Search" circle class="sbutton" @click="bsearch(search1)" />
       </div>
 
 
       <div class="HeadTitleRt">
-          <el-link v-show="login == 0" class='link' type="warning" href="/Login">登录</el-link>
-          <el-link v-show="login == 0" class='link' type="warning" href="/Register">注册</el-link>
-          <el-link v-show="login == 1" class='link' type="warning" @click="exit()">退出</el-link>
+        <el-link v-show="login == 0" class='link' type="warning" href="/Login">登录</el-link>
+        <el-link v-show="login == 0" class='link' type="warning" href="/Register">注册</el-link>
+        <el-link v-show="login == 1" class='link' type="warning" @click="exit()">退出</el-link>
       </div>
     </div>
   </div>

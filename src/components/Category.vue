@@ -123,11 +123,11 @@ request({
             </el-col>
             <el-col :span="16">
               <div class="comic">
-              <span class="midtitle"> {{ item.bName }} </span><br>
-              <span class="comicInfo"> {{ item.bAuthor }}</span><br>
-              <span class="comicInfo"> 最新话:第{{ item.bMaxno }}话</span>
-              <p class="comicdetail">{{ item.bInfo }}</p>
-            </div>
+                <span class="midtitle"> {{ item.bName }} </span><br>
+                <span class="comicInfo"> {{ item.bAuthor }}</span><br>
+                <span class="comicInfo"> 最新话:第{{ item.bMaxno }}话</span>
+                <p class="comicdetail">{{ item.bInfo }}</p>
+              </div>
             </el-col>
             <div class="line"></div>
           </el-row>
@@ -158,9 +158,11 @@ request({
 .top {
   color: darkorange;
 }
-.comic{
+
+.comic {
   margin-left: 3%;
 }
+
 .topline {
   width: 85%;
   height: 0;
@@ -197,7 +199,7 @@ request({
 .comicdetail {
   padding-left: 1%;
   padding-top: 2%;
-  width: 70%;
+  width: 80%;
   font-size: medium;
   color: white;
 }
@@ -219,11 +221,6 @@ request({
   font-size: x-large;
   color: white;
 }
-
-
-
-
-
 
 .el-menu.el-menu-item.is-active {
   color: darkorange;

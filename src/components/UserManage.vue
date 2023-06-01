@@ -54,46 +54,49 @@ const request = axios.create({
 
 const table = ref()
 
-const getDataList=()=>{
-  request.get("/getUser").then(res=>{
-  table.value=res.data
+const getDataList = () => {
+  request.get("/getUser").then(res => {
+    table.value = res.data
   })
 }
 
 getDataList()
 
 const deleteRow = (id: string) => {
-  const params=new URLSearchParams()
-  params.append("id",id)
-  request.post("/DeleteUser",params).then(res=>{
+  const params = new URLSearchParams()
+  params.append("id", id)
+  request.post("/DeleteUser", params).then(res => {
     console.log(res.data)
     ElMessage({
-            showClose: true,
-            message: '用户删除成功',
-            type: 'success',})
+      showClose: true,
+      message: '用户删除成功',
+      type: 'success',
+    })
     getDataList()
   })
 }
 const form = reactive({
-  id:'',
-  username:'',
-  account:'',
-  password:''
+  id: '',
+  username: '',
+  account: '',
+  password: ''
 })
 
 const dialogFormVisible = ref(false)
 const formLabelWidth = '15%'
 
-const addUser=()=>{
+const addUser = () => {
+  form.username = encodeURIComponent(form.username)
   dialogFormVisible.value = false
-  request.post("/AddUser",form).then(res=>{
-  console.log(res.data)
-  ElMessage({
-            showClose: true,
-            message: '用户增加成功',
-            type: 'success',})
-  getDataList()
-})
+  request.post("/AddUser", form).then(res => {
+    console.log(res.data)
+    ElMessage({
+      showClose: true,
+      message: '用户增加成功',
+      type: 'success',
+    })
+    getDataList()
+  })
 
 }
 //增加用户

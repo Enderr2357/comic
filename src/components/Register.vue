@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container class="bg">
     <el-aside width="40%" class="side">
       <div class="as-img">
         <img :src="imgUrl">
@@ -107,12 +107,12 @@ const register = () => {
       }
     }).then((res => {
       console.log(res.data)
-      if(res.data==1){
-      alert("注册成功")
-      localStorage.setItem("login", 1)
-      localStorage.setItem("role", 0)
+      if (res.data == 1) {
+        alert("注册成功")
+        localStorage.setItem("login", 1)
+        localStorage.setItem("role", 0)
       }
-      else if(res.data==0){
+      else if (res.data == 0) {
         alert("用户名重复")
       }
     }))
@@ -125,6 +125,11 @@ const register = () => {
 }
 </script>
 <style scoped>
+.bg {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
 .demo-radius .radius {
   height: 100%;
   width: 45%;
@@ -169,8 +174,8 @@ const register = () => {
 }
 
 .RButton {
-  width: 50%;
-  margin-left: 26%;
+  width: 45%;
+  margin-left: 28%;
   margin-bottom: 10%;
   margin-top: 4%;
 }

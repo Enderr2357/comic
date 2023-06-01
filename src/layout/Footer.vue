@@ -1,12 +1,21 @@
 <script setup>
-
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const TurnMain = () => {
+  router.push("/Main")
+}
 </script>
 <template>
   <div class="footer">
-    <span class="foottitle">关于我们 | 联系我们 | 返回首页</span>
+    <p class="foottitle"><span>关于我们 | 联系我们 | </span><span class="tomain" @click="TurnMain">返回首页
+      </span></p>
   </div>
 </template>
 <style>
+.foottitle :hover {
+  cursor: pointer;
+}
+
 .footer {
   background-color: #000000;
   height: 100%;
@@ -14,6 +23,7 @@
 }
 
 .foottitle {
+  padding-top: 2%;
   color: orange;
 }
 

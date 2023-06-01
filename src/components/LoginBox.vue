@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container class="bg">
     <el-aside width="40%" class="side">
       <div class="as-img">
         <img :src="imgUrl" />
@@ -78,7 +78,7 @@ const login = () => {
       alert("登陆成功")
       localStorage.setItem("login", 1)
       localStorage.setItem("role", result.value.urole)
-      localStorage.setItem("User",result.value.uid)
+      localStorage.setItem("User", result.value.uid)
     }
     else {
       alert("账号或密码错误")
@@ -87,6 +87,11 @@ const login = () => {
 }
 </script>
 <style scoped>
+.bg {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
 .LgText {
   margin-left: 31%;
   font-size: 6px;
@@ -139,8 +144,8 @@ const login = () => {
 }
 
 .loginbtn {
-  width: 50%;
-  margin-left: 26%;
+  width: 45%;
+  margin-left: 31%;
   margin-bottom: 15%;
   margin-top: 4%;
 }

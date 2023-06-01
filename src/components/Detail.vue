@@ -1,14 +1,14 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
-import {requestUrlParam1 } from '../router';
+import { requestUrlParam1 } from '../router';
 import { Star, Right } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router';
 import { method } from 'lodash';
 const imgUrl = new URL('../img/comicimg', import.meta.url).href
 const id = requestUrlParam1();
 console.log(id)
-const router=useRouter();
+const router = useRouter();
 const chapterinfo = ref([])
 const comicinfo = ref([])
 const bid = ref(0)
@@ -18,14 +18,14 @@ const binfo = ref('')
 const bmaxno = ref(0)
 const bcategory = ref('')
 const bauthor = ref(0)
-const cateName=ref('')
+const cateName = ref('')
 const request1 = axios.create({
   baseURL: '/api',
   timeout: 10000
 })
-const sub=ref(false)
-const subtext=ref('订阅')
-const login=localStorage.getItem('login')
+const sub = ref(false)
+const subtext = ref('订阅')
+const login = localStorage.getItem('login')
 
 request1({
   method: 'POST',
@@ -46,36 +46,36 @@ request1({
   bauthor.value = comicinfo.value[0].bauthor
 
   request1({
-    url:"/comiccategory",
-    method:"GET",
-    params:{
-      data:bcategory.value
+    url: "/comiccategory",
+    method: "GET",
+    params: {
+      data: bcategory.value
     }
-  }).then(res=>{
+  }).then(res => {
     console.log(res.data.cateName)
-    cateName.value=res.data.cateName
+    cateName.value = res.data.cateName
   })
 
-  if(login==1){
-  console.log("检查订阅")
-  const user=ref(localStorage.getItem("User"))
-  console.log(user)
-  request1({
-    url:"/CheckSub",
-    method:"GET",
-    params:{
-      uid: user.value,
-      bid:bid.value
-    }
-  }).then(res=>{
-    console.log("订阅结果")
-    console.log(res.data.bid)
-    if(res.data.bid>0){
-        sub.value=true
-        subtext.value="已订阅"
-    }
-  })
-}
+  if (login == 1) {
+    console.log("检查订阅")
+    const user = ref(localStorage.getItem("User"))
+    console.log(user)
+    request1({
+      url: "/CheckSub",
+      method: "GET",
+      params: {
+        uid: user.value,
+        bid: bid.value
+      }
+    }).then(res => {
+      console.log("订阅结果")
+      console.log(res.data.bid)
+      if (res.data.bid > 0) {
+        sub.value = true
+        subtext.value = "已订阅"
+      }
+    })
+  }
 }))
 console.log(bid.value)
 request1({
@@ -93,39 +93,39 @@ request1({
 }))
 
 
-const subscribe=()=>{
-  if(login==1){
-    const user=ref(localStorage.getItem("User"))
-  console.log(user)
-    if(sub.value==true){
+const subscribe = () => {
+  if (login == 1) {
+    const user = ref(localStorage.getItem("User"))
+    console.log(user)
+    if (sub.value == true) {
       alert("已订阅")
     }
-    else{
+    else {
       request1({
-        url:'/CheckSub',
-        method:'POST',
-        params:{
+        url: '/CheckSub',
+        method: 'POST',
+        params: {
           uid: user.value,
-          bid:bid.value,
-          sub:"1"
+          bid: bid.value,
+          sub: "1"
         }
-    }).then(res=>{
-      console.log("订阅结果为"+res.data)
-      if(res.data==1){
-        subtext.value="已订阅"
-      }
-    })
+      }).then(res => {
+        console.log("订阅结果为" + res.data)
+        if (res.data == 1) {
+          subtext.value = "已订阅"
+        }
+      })
     }
   }
-  else{
+  else {
     alert("请先登录")
   }
 }
-const startRead=()=>{
-  router.push("/Reading/"+bid.value+"/"+1)
+const startRead = () => {
+  router.push("/Reading/" + bid.value + "/" + 1)
 }
-const turnread=(currentNo)=>{
-  router.push("/Reading/"+bid.value+"/"+currentNo)
+const turnread = (currentNo) => {
+  router.push("/Reading/" + bid.value + "/" + currentNo)
 }
 </script>
 <template>
@@ -133,8 +133,8 @@ const turnread=(currentNo)=>{
     <div class="comicBlock">
       <div class="comicImg">
         <el-image :src="imgUrl + '/' + bsrcname + '.jpg'" style="width: auto; height: auto; max-width: 100%;
-                                                                      max-height: 100%;" :zoom-rate="1.2"
-          :preview-src-list="[imgUrl + '/' + bsrcname + '.jpg']" :initial-index="1" fit="contain" />
+                                                                                              max-height: 100%;"
+          :zoom-rate="1.2" :preview-src-list="[imgUrl + '/' + bsrcname + '.jpg']" :initial-index="1" fit="contain" />
       </div>
       <div class="comicdeCon">
         <h1 class="comicTitle">{{ bname }}</h1>
@@ -144,8 +144,8 @@ const turnread=(currentNo)=>{
         <p class="comicInfo">最新话: 第{{ bmaxno }}话</p>
         <div class="dashed"></div>
         <p class="comicdetail">{{ binfo }}</p>
-          <el-button type="primary" size="large" :icon="Right" class="start" @click="startRead()">开始阅读</el-button>
-        <el-button type="warning"  size="large" :icon="Star" @click="subscribe()">{{subtext}}</el-button>
+        <el-button type="primary" size="large" :icon="Right" class="start" @click="startRead()">开始阅读</el-button>
+        <el-button type="warning" size="large" :icon="Star" @click="subscribe()">{{ subtext }}</el-button>
       </div>
     </div>
     <div class="comicno">
@@ -157,7 +157,7 @@ const turnread=(currentNo)=>{
       <div class="comicnobody">
         <el-row :gutter="20">
           <el-col :span="6" v-for="item in chapterinfo">
-            <a class="comicChapter"  @click="turnread(item.currentNo)">{{ item.currentNoName }}</a>
+            <a class="comicChapter" @click="turnread(item.currentNo)">{{ item.currentNoName }}</a>
           </el-col>
         </el-row>
       </div>
@@ -175,7 +175,6 @@ const turnread=(currentNo)=>{
   color: white;
   font-size: x-large;
   padding-left: 10%;
-
 }
 
 .el-col {
@@ -210,6 +209,7 @@ const turnread=(currentNo)=>{
 .comicdetail {
   color: #b4b3b3;
   font-size: medium;
+  margin-bottom: 9%;
 }
 
 .dashed {
@@ -243,7 +243,7 @@ const turnread=(currentNo)=>{
 }
 
 .comicdeCon {
-  width: 70%;
+  width: 60%;
   height: auto;
   margin-left: 3%;
 }

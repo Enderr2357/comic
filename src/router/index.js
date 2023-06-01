@@ -24,7 +24,7 @@ const router = createRouter({
       component: () => { return import('../components/Register.vue') }
     },
     {
-      path: '/Search',
+      path: '/Search/:name*',
       component: () => { return import('../components/Search.vue') }
     },
     {
@@ -92,9 +92,10 @@ const router = createRouter({
     }
   ]
 })
+var comicname = ref('')
 router.beforeEach((to, from, next) => {
   console.log(to)
-  const i=localStorage.getItem('login')
+  const i = localStorage.getItem('login')
   console.log(localStorage.getItem("login"))
   next()
 })

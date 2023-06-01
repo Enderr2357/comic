@@ -5,7 +5,7 @@ import { requestUrlParam1 } from '../router';
 import { useRouter } from 'vue-router';
 const imgUrl1 = new URL('../img/comicimg', import.meta.url).href
 const categoryinfo = ref([])
-const router=useRouter();
+const router = useRouter();
 const request = axios.create({
   baseURL: '/api',
   timeout: 10000
@@ -25,11 +25,11 @@ request({
   }
   console.log(imgInfo.value[0].bAuthor)
 }))
-const turncate=(cateId)=>{
-  router.push('/Category/'+cateId)
+const turncate = (cateId) => {
+  router.push('/Category/' + cateId)
 }
-const turnDetail=(bId)=>{
-  router.push('/Detail/'+bId)
+const turnDetail = (bId) => {
+  router.push('/Detail/' + bId)
 }
 request({
   method: 'GET',
@@ -48,7 +48,7 @@ request({
 <template>
   <div class="bg">
     <div class="titlebig">欢迎使用漫画网站</div><br>
-    <div style="display:inline-flex;margin-left: 33%;">
+    <div style="display:inline-flex;margin-left: 38%;">
       <ul v-for="value in categoryinfo">
         <li><el-link type="info" style="margin-left: 10px;" @click="turncate(value.cateId)">{{ value.cateName
         }}</el-link>
@@ -59,9 +59,9 @@ request({
     <div class="main">
       <el-row gutter="20">
         <el-col :span="3" v-for="item in imgInfo">
-          <div @click="turnDetail(item.bId)" class="img"> 
-              <el-image :src="imgUrl1 + '/' + item.bSrcname + '.jpg'" ></el-image>
-              <div class="titlesmall">{{ item.bName }}</div>
+          <div @click="turnDetail(item.bId)" class="img">
+            <el-image :src="imgUrl1 + '/' + item.bSrcname + '.jpg'"></el-image>
+            <div class="titlesmall">{{ item.bName }}</div>
           </div>
         </el-col>
       </el-row>
@@ -106,9 +106,11 @@ li {
   color: white;
   font-size: 20px;
 }
-.img :hover{
-  cursor: pointer ;
+
+.img :hover {
+  cursor: pointer;
 }
+
 .main {
   margin-left: 20%;
 }
